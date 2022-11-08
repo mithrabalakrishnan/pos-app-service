@@ -39,8 +39,14 @@ public class UserHomeController {
 		
 		logger.info("inside tableBooking() in UserHomeController ");
 		
+		TableDTO table = userHomeService.tableBooking(tableDto);
 		
-		return null;
+		StatusResponse response = new StatusResponse();
+		response.setData(table);
+		response.setMessage("Table Booked");
+		response.setStatus(true);
+		
+		return ResponseEntity.ok(response);
 	}
 
 }

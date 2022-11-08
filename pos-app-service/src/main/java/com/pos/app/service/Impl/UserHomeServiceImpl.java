@@ -2,9 +2,13 @@ package com.pos.app.service.Impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.pos.app.dto.TableDTO;
@@ -13,6 +17,7 @@ import com.pos.app.model.Food;
 import com.pos.app.model.TableDetail;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.UserBookingRepository;
+import com.pos.app.repository.UserRepository;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.vo.MenuDetails;
 
@@ -24,7 +29,11 @@ public class UserHomeServiceImpl implements UserHomeService{
 	@Autowired
 	private AdminRepository adminRepository;
 	
+	@Autowired
 	private UserBookingRepository bookingRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Override
 	public MenuDetails getMenuDetails() {
@@ -55,14 +64,19 @@ public class UserHomeServiceImpl implements UserHomeService{
 		
 		try {
 			
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                    .getPrincipal();
+			String username = userDetails.getUsername();
 			
+			Integer userId = userRepository.getUserId(username);
 			
+			details.setUserId(userId);
 			details.setDate(tableDto.getDate());
 			details.setTime(tableDto.getTime());
 			details.setMembers(tableDto.getMembers());
 			details.setSeatLocation(tableDto.getSeatLocation());
 			
-			
+			bookingRepository.save(details);
 		
 			
 			
@@ -71,7 +85,7 @@ public class UserHomeServiceImpl implements UserHomeService{
 			throw new BusinessException(e.getMessage());
 		}
 		
-		return null;
+		return tableDto;
 	}
 	
 
