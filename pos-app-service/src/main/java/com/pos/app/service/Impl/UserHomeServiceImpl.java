@@ -7,9 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pos.app.dto.TableDTO;
 import com.pos.app.exception.BusinessException;
 import com.pos.app.model.Food;
+import com.pos.app.model.TableDetail;
 import com.pos.app.repository.AdminRepository;
+import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.vo.MenuDetails;
 
@@ -20,6 +23,8 @@ public class UserHomeServiceImpl implements UserHomeService{
 	
 	@Autowired
 	private AdminRepository adminRepository;
+	
+	private UserBookingRepository bookingRepository;
 	
 	@Override
 	public MenuDetails getMenuDetails() {
@@ -40,6 +45,33 @@ public class UserHomeServiceImpl implements UserHomeService{
 		}
 		
 		return details;
+	}
+
+	@Override
+	public TableDTO tableBooking(TableDTO tableDto) {
+		logger.info("inside tableBooking() in UserHomeServiceImpl");
+		
+		TableDetail  details = new TableDetail();
+		
+		try {
+			
+			
+			
+			details.setDate(tableDto.getDate());
+			details.setTime(tableDto.getTime());
+			details.setMembers(tableDto.getMembers());
+			details.setSeatLocation(tableDto.getSeatLocation());
+			
+			
+		
+			
+			
+		} catch (BusinessException e) {
+			logger.error("ERROR "+ e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		
+		return null;
 	}
 	
 

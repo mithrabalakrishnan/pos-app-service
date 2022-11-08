@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pos.app.dto.TableDTO;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.vo.MenuDetails;
 import com.pos.app.vo.StatusResponse;
@@ -30,6 +32,15 @@ public class UserHomeController {
 		response.setMessage("User Home Details");
 		return ResponseEntity.ok(response);
 
+	}
+	
+	@PostMapping("/table-booking")
+	public ResponseEntity<?> tableBooking(TableDTO tableDto){
+		
+		logger.info("inside tableBooking() in UserHomeController ");
+		
+		
+		return null;
 	}
 
 }
