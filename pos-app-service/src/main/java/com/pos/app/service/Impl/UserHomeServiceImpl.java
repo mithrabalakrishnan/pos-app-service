@@ -14,8 +14,11 @@ import org.springframework.stereotype.Service;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.exception.BusinessException;
 import com.pos.app.model.Food;
+import com.pos.app.model.FoodOrder;
+import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.TableDetail;
 import com.pos.app.repository.AdminRepository;
+import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.repository.UserRepository;
 import com.pos.app.service.UserHomeService;
@@ -31,6 +34,9 @@ public class UserHomeServiceImpl implements UserHomeService{
 	
 	@Autowired
 	private UserBookingRepository bookingRepository;
+	
+	@Autowired
+	private FoodOrderRepository orderRepository; 
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -57,7 +63,7 @@ public class UserHomeServiceImpl implements UserHomeService{
 	}
 
 	@Override
-	public TableDTO tableBooking(TableDTO tableDto) {
+	public TableDetail tableBooking(TableDTO tableDto) {
 		logger.info("inside tableBooking() in UserHomeServiceImpl");
 		
 		TableDetail  details = new TableDetail();
@@ -85,8 +91,44 @@ public class UserHomeServiceImpl implements UserHomeService{
 			throw new BusinessException(e.getMessage());
 		}
 		
-		return tableDto;
+		return details;
 	}
+
+	@Override
+	public FoodOrder foodOder(FoodOrderDTO oderDto) {
+		logger.info("inside foodOder() in UserHomeServiceImpl");
+		
+		FoodOrder order = new FoodOrder();
+		
+		try {
+			
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                    .getPrincipal();
+			String username = userDetails.getUsername();
+			
+			Integer userId = userRepository.getUserId(username);
+			
+			order.setUserId(userId);
+			order.setQuanty(oderDto.getQuanty());
+			order.setTableId(oderDto.getTableId());
+			order.setTimeDate(oderDto.getTimeDate());
+			order.setTotalPrice(oderDto.getTotalPrice());
+			
+			for(int i=0;i<oderDto.getFoodId().size();i++) {
+				order.setFoodId(oderDto.getFoodId().get(i));
+				orderRepository.save(order);
+			}
+			
+			
+			
+		} catch (BusinessException e) {
+			logger.error("ERROR "+ e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return order;
+	}
+	
+	
 	
 
 }

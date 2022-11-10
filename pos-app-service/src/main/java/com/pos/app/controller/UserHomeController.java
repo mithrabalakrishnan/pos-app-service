@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.dto.TableDTO;
+import com.pos.app.model.TableDetail;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.vo.MenuDetails;
 import com.pos.app.vo.StatusResponse;
@@ -38,6 +39,22 @@ public class UserHomeController {
 	public ResponseEntity<?> tableBooking(TableDTO tableDto){
 		
 		logger.info("inside tableBooking() in UserHomeController ");
+		
+		TableDetail table = userHomeService.tableBooking(tableDto);
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(table);
+		response.setMessage("Table Booked");
+		response.setStatus(true);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	
+	@PostMapping("/table-booking")
+	public ResponseEntity<?> foodOdering(TableDTO tableDto){
+		
+		logger.info("inside foodOdering() in UserHomeController ");
 		
 		TableDTO table = userHomeService.tableBooking(tableDto);
 		
