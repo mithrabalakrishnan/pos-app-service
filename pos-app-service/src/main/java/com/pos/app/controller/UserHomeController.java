@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.dto.TableDTO;
+import com.pos.app.model.FoodOrder;
+import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.TableDetail;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.vo.MenuDetails;
@@ -51,12 +53,12 @@ public class UserHomeController {
 	}
 	
 	
-	@PostMapping("/table-booking")
-	public ResponseEntity<?> foodOdering(TableDTO tableDto){
+	@PostMapping("/food-order")
+	public ResponseEntity<?> foodOdering(FoodOrderDTO orderDto){
 		
 		logger.info("inside foodOdering() in UserHomeController ");
 		
-		TableDTO table = userHomeService.tableBooking(tableDto);
+		FoodOrder table = userHomeService.foodOder(orderDto);
 		
 		StatusResponse response = new StatusResponse();
 		response.setData(table);
