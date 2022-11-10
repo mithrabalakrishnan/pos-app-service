@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.dto.FoodDTO;
+import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.model.Food;
 import com.pos.app.service.AdminService;
 import com.pos.app.vo.StatusResponse;
@@ -36,5 +37,22 @@ public class AdminController {
 		
 		return ResponseEntity.ok(response);
 	}
+	
+	@PostMapping("/add-menu")
+	public ResponseEntity<?> getOrderList(){
+		
+		logger.info("inside getOrderList() in AdminController");
+		
+		OrderDetailsDto orderList = adminService.getOrderList();
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(orderList);
+		response.setMessage("Order List");
+		response.setStatus(true);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	
 
 }

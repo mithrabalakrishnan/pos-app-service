@@ -1,5 +1,6 @@
 package com.pos.app.service;
 
+import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
@@ -14,6 +15,11 @@ public interface UserHomeService {
 	public TableDetail tableBooking(TableDTO tableDto);
 	
 	public FoodOrder foodOder(FoodOrderDTO oderDto);
+	
+	public OrderDetailsDto getHistory();
+	
+	
+	
 	
 
 }

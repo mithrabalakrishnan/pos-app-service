@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
@@ -58,11 +59,26 @@ public class UserHomeController {
 		
 		logger.info("inside foodOdering() in UserHomeController ");
 		
-		FoodOrder table = userHomeService.foodOder(orderDto);
+		FoodOrder order = userHomeService.foodOder(orderDto);
 		
 		StatusResponse response = new StatusResponse();
-		response.setData(table);
-		response.setMessage("Table Booked");
+		response.setData(order);
+		response.setMessage("Food Ordered");
+		response.setStatus(true);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping("/user-history")
+	public ResponseEntity<?> getHistory(){
+		
+		logger.info("inside getHistory() in UserHomeController ");
+		
+		OrderDetailsDto history = userHomeService.getHistory();
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(history);
+		response.setMessage("History details");
 		response.setStatus(true);
 		
 		return ResponseEntity.ok(response);
