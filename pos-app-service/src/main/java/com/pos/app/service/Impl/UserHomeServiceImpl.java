@@ -18,6 +18,7 @@ import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.TableDetail;
+import com.pos.app.model.User;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
@@ -75,9 +76,9 @@ public class UserHomeServiceImpl implements UserHomeService {
 					.getPrincipal();
 			String username = userDetails.getUsername();
 
-			Integer userId = userRepository.getUserId(username);
+			User user = userRepository.findByUsername(username);
 
-			details.setUserId(userId);
+			details.setUserId((int) user.getId());
 			details.setDate(tableDto.getDate());
 			details.setTime(tableDto.getTime());
 			details.setMembers(tableDto.getMembers());
@@ -105,9 +106,9 @@ public class UserHomeServiceImpl implements UserHomeService {
 					.getPrincipal();
 			String username = userDetails.getUsername();
 
-			Integer userId = userRepository.getUserId(username);
+			User user = userRepository.findByUsername(username);
 
-			order.setUserId(userId);
+			order.setUserId((int) user.getId());
 			order.setQuanty(oderDto.getQuanty());
 			order.setTableId(oderDto.getTableId());
 			order.setTimeDate(oderDto.getTimeDate());
@@ -138,8 +139,10 @@ public class UserHomeServiceImpl implements UserHomeService {
 					.getPrincipal();
 			String username = userDetails.getUsername();
 
-			Integer userId = userRepository.getUserId(username);
+			User user = userRepository.findByUsername(username);
 
+			Integer userId = (int) user.getId();
+			
 			List<FoodOrder> orderList = orderRepository.findByUserId(userId);
 
 			List<TableDetail> tableDetail = bookingRepository.findByUserId(userId);

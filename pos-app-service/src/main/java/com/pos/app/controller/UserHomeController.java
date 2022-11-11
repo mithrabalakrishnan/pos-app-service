@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.dto.OrderDetailsDto;
@@ -39,7 +40,7 @@ public class UserHomeController {
 	}
 	
 	@PostMapping("/table-booking")
-	public ResponseEntity<?> tableBooking(TableDTO tableDto){
+	public ResponseEntity<?> tableBooking(@RequestBody TableDTO tableDto){
 		
 		logger.info("inside tableBooking() in UserHomeController ");
 		
@@ -55,8 +56,7 @@ public class UserHomeController {
 	
 	
 	@PostMapping("/food-order")
-	public ResponseEntity<?> foodOdering(FoodOrderDTO orderDto){
-		
+	public ResponseEntity<?> foodOdering( @RequestBody FoodOrderDTO orderDto){
 		logger.info("inside foodOdering() in UserHomeController ");
 		
 		FoodOrder order = userHomeService.foodOder(orderDto);
@@ -69,7 +69,7 @@ public class UserHomeController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping("/user-history")
+	@GetMapping("/user-history")
 	public ResponseEntity<?> getHistory(){
 		
 		logger.info("inside getHistory() in UserHomeController ");
