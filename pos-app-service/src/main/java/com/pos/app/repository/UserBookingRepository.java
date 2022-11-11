@@ -11,5 +11,7 @@ import com.pos.app.model.TableDetail;
 public interface UserBookingRepository extends JpaRepository<TableDetail, Integer> {
 
 	public List<TableDetail> findByUserId(Integer userId);
+	
+	public TableDetail findByTimeAndDate(String time, String date);
 
 }

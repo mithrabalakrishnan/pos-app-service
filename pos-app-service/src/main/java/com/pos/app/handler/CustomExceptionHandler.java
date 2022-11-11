@@ -23,7 +23,7 @@ public class CustomExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
 	public @ResponseBody StatusResponse handleCommonException(final Exception exception) {
-		log.info("inside handleCommonException CustomExceptionHandler");
+		log.info("inside handleCommonException CustomExceptionHandler " + exception.getMessage());
 		//ErrorResponse error = new ErrorResponse();
 		StatusResponse error = new StatusResponse();
 		error.setMessage(exception.getMessage());
@@ -34,9 +34,9 @@ public class CustomExceptionHandler {
 	
 	
 	@ExceptionHandler(BusinessException.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	public @ResponseBody StatusResponse handleBusinessException(final BusinessException exception, String msg) {
-		log.info("inside handleBusinessException CustomExceptionHandler");
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public @ResponseBody StatusResponse handleBusinessException(final BusinessException exception) {
+		log.info("inside handleBusinessException CustomExceptionHandler " + exception.getMessage());
 		//ErrorResponse error = new ErrorResponse();
 		StatusResponse error = new StatusResponse();
 		error.setMessage(exception.getMessage());
@@ -44,19 +44,5 @@ public class CustomExceptionHandler {
 		error.setData("");		
 		return error;
 	} 
-	
-	
-	//@ExceptionHandler(BusinessException.class)
-	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
-	public @ResponseBody StatusResponse unAuthorizedException(final BusinessException exception) {
-		log.info("inside unAuthorizedException CustomExceptionHandler");
-		//ErrorResponse error = new ErrorResponse();
-		StatusResponse error = new StatusResponse();
-		error.setMessage(exception.getMessage());
-		error.setStatus(AppConstants.STATUS_FAILED);
-		error.setData("");		
-		return error;
-	} 
-	
 	
 }

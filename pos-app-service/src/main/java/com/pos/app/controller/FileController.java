@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.FileResponse;
 import com.pos.app.service.FileStorageService;
 import com.pos.app.vo.StatusResponse;
@@ -50,7 +51,7 @@ public class FileController {
         FileResponse fileResponse = new FileResponse(fileName, fileDownloadUri);
         
         StatusResponse status = new StatusResponse();
-        status.setStatus(true);
+        status.setStatus(AppConstants.STATUS_SUCCESS);
         status.setMessage("File Uploaded Successfully");
         status.setData(fileResponse);
         

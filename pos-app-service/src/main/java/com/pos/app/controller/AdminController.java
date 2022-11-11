@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.FoodDTO;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.model.Food;
@@ -34,7 +35,7 @@ public class AdminController {
 		StatusResponse response = new StatusResponse();
 		response.setData(menu);
 		response.setMessage("New Food Added");
-		response.setStatus(true);
+		response.setStatus(AppConstants.STATUS_SUCCESS);
 		
 		return ResponseEntity.ok(response);
 	}
@@ -49,7 +50,7 @@ public class AdminController {
 		StatusResponse response = new StatusResponse();
 		response.setData(orderList);
 		response.setMessage("Order List");
-		response.setStatus(true);
+		response.setStatus(AppConstants.STATUS_SUCCESS);
 		
 		return ResponseEntity.ok(response);
 	}

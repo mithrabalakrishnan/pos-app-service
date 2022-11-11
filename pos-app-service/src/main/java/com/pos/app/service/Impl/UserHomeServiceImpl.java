@@ -44,7 +44,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	private UserRepository userRepository;
 
 	@Override
-	public MenuDetails getMenuDetails() {
+	public MenuDetails getMenuDetails() throws BusinessException{
 		logger.info("inside getMenuDetails() in UserHomeServiceImpl");
 		MenuDetails details = new MenuDetails();
 		try {
@@ -65,7 +65,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 
 	@Override
-	public TableDetail tableBooking(TableDTO tableDto) {
+	public TableDetail tableBooking(TableDTO tableDto) throws BusinessException {
 		logger.info("inside tableBooking() in UserHomeServiceImpl");
 
 		TableDetail details = new TableDetail();
@@ -75,6 +75,14 @@ public class UserHomeServiceImpl implements UserHomeService {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
 			String username = userDetails.getUsername();
+			
+			
+			TableDetail tableDetail = bookingRepository.findByTimeAndDate(tableDto.getTime(), tableDto.getDate());
+			
+			if(tableDetail!=null) {
+				logger.info("table already booked in UserHomeServiceImpl");
+				throw new BusinessException("This table already booked on this time.");
+			}
 
 			User user = userRepository.findByUsername(username);
 
@@ -86,7 +94,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			bookingRepository.save(details);
 
-		} catch (BusinessException e) {
+		} catch (Exception e) {
 			logger.error("ERROR " + e.getMessage());
 			throw new BusinessException(e.getMessage());
 		}
@@ -95,7 +103,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 
 	@Override
-	public FoodOrder foodOder(FoodOrderDTO oderDto) {
+	public FoodOrder foodOder(FoodOrderDTO oderDto) throws BusinessException{
 		logger.info("inside foodOder() in UserHomeServiceImpl");
 
 		FoodOrder order = new FoodOrder();
@@ -127,7 +135,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 
 	@Override
-	public OrderDetailsDto getHistory() {
+	public OrderDetailsDto getHistory() throws BusinessException{
 
 		logger.info("inside getHistory() in UserHomeServiceImpl");
 

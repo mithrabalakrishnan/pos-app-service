@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
 	private FoodOrderRepository orderRepository;
 	
 	@Override
-	public Food addMenu(FoodDTO food) {
+	public Food addMenu(FoodDTO food) throws BusinessException{
 
 		logger.info("inside addMenu()  in AdminServiceImpl");
 
@@ -65,7 +65,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public OrderDetailsDto getOrderList() {
+	public OrderDetailsDto getOrderList() throws BusinessException{
 		logger.info("inside getOrderList()  in AdminServiceImpl");
 		
 		OrderDetailsDto orderDetail = new OrderDetailsDto();

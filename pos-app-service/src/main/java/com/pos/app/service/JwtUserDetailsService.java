@@ -58,10 +58,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 			
 			if(userRepository.findByEmail(newUser.getEmail())!=null) {
+				log.info("Email already registered");
 				throw new BusinessException("Email already registered");
 			}else if(userRepository.findByPhone(newUser.getPhone())!=null) {
+				log.info("Phone already registered");
 				throw new BusinessException("Phone already registered");
 			}else if(userRepository.findByUsername(newUser.getUsername())!=null) {
+				log.info("username already found");
 				throw new BusinessException("username already found");
 			}
 			

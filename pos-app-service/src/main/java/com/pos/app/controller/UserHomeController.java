@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.model.FoodOrder;
@@ -33,7 +34,7 @@ public class UserHomeController {
 		MenuDetails menu = userHomeService.getMenuDetails();
 		StatusResponse response = new StatusResponse();
 		response.setData(menu);
-		response.setStatus(true);
+		response.setStatus(AppConstants.STATUS_SUCCESS);
 		response.setMessage("User Home Details");
 		return ResponseEntity.ok(response);
 
@@ -49,7 +50,7 @@ public class UserHomeController {
 		StatusResponse response = new StatusResponse();
 		response.setData(table);
 		response.setMessage("Table Booked");
-		response.setStatus(true);
+		response.setStatus(AppConstants.STATUS_SUCCESS);
 		
 		return ResponseEntity.ok(response);
 	}
@@ -64,7 +65,7 @@ public class UserHomeController {
 		StatusResponse response = new StatusResponse();
 		response.setData(order);
 		response.setMessage("Food Ordered");
-		response.setStatus(true);
+		response.setStatus(AppConstants.STATUS_SUCCESS);
 		
 		return ResponseEntity.ok(response);
 	}
@@ -79,7 +80,7 @@ public class UserHomeController {
 		StatusResponse response = new StatusResponse();
 		response.setData(history);
 		response.setMessage("History details");
-		response.setStatus(true);
+		response.setStatus(AppConstants.STATUS_SUCCESS);
 		
 		return ResponseEntity.ok(response);
 	}
