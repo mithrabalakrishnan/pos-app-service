@@ -13,5 +13,7 @@ public interface UserBookingRepository extends JpaRepository<TableDetail, Intege
 	public List<TableDetail> findByUserId(Integer userId);
 	
 	public TableDetail findByTimeAndDate(String time, String date);
+	
+	public List<TableDetail> findByUserIdAndFoodId(Integer userId, List<Integer> foodId);
 
 }

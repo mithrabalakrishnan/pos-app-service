@@ -117,13 +117,15 @@ public class UserHomeServiceImpl implements UserHomeService {
 			User user = userRepository.findByUsername(username);
 
 			order.setUserId((int) user.getId());
-			order.setQuanty(oderDto.getQuanty());
+			
 			order.setTableId(oderDto.getTableId());
 			order.setTimeDate(oderDto.getTimeDate());
-			order.setTotalPrice(oderDto.getTotalPrice());
-
+			
+			
 			for (int i = 0; i < oderDto.getFoodId().size(); i++) {
 				order.setFoodId(oderDto.getFoodId().get(i));
+				order.setQuanty(oderDto.getQuanty().get(i));
+				order.setTotalPrice(oderDto.getTotalPrice().get(i));
 				orderRepository.save(order);
 			}
 
