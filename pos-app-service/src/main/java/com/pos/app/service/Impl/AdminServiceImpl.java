@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pos.app.dto.FoodDTO;
 import com.pos.app.dto.OrderDetailsDto;
@@ -19,6 +21,7 @@ import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.service.AdminService;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 public class AdminServiceImpl implements AdminService {
 
 	Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
