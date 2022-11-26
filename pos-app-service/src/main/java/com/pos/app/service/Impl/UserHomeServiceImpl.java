@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pos.app.dto.FoodCategory;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.exception.BusinessException;
@@ -47,7 +48,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	private UserRepository userRepository;
 
 	@Override
-	public MenuDetails getMenuDetails() throws BusinessException{
+	public MenuDetails getMenuDetails() throws BusinessException {
 		logger.info("inside getMenuDetails() in UserHomeServiceImpl");
 		MenuDetails details = new MenuDetails();
 		try {
@@ -78,11 +79,10 @@ public class UserHomeServiceImpl implements UserHomeService {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
 			String username = userDetails.getUsername();
-			
-			
+
 			TableDetail tableDetail = bookingRepository.findByTimeAndDate(tableDto.getTime(), tableDto.getDate());
-			
-			if(tableDetail!=null) {
+
+			if (tableDetail != null) {
 				logger.info("table already booked in UserHomeServiceImpl");
 				throw new BusinessException("This table already booked on this time.");
 			}
@@ -106,7 +106,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 
 	@Override
-	public FoodOrder foodOder(FoodOrderDTO oderDto) throws BusinessException{
+	public FoodOrder foodOder(FoodOrderDTO oderDto) throws BusinessException {
 		logger.info("inside foodOder() in UserHomeServiceImpl");
 
 		FoodOrder order = new FoodOrder();
@@ -120,11 +120,10 @@ public class UserHomeServiceImpl implements UserHomeService {
 			User user = userRepository.findByUsername(username);
 
 			order.setUserId((int) user.getId());
-			
+
 			order.setTableId(oderDto.getTableId());
 			order.setTimeDate(oderDto.getTimeDate());
-			
-			
+
 			for (int i = 0; i < oderDto.getFoodId().size(); i++) {
 				order.setFoodId(oderDto.getFoodId().get(i));
 				order.setQuanty(oderDto.getQuanty().get(i));
@@ -140,7 +139,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 
 	@Override
-	public OrderDetailsDto getHistory() throws BusinessException{
+	public OrderDetailsDto getHistory() throws BusinessException {
 
 		logger.info("inside getHistory() in UserHomeServiceImpl");
 
@@ -155,7 +154,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 			User user = userRepository.findByUsername(username);
 
 			Integer userId = (int) user.getId();
-			
+
 			List<FoodOrder> orderList = orderRepository.findByUserId(userId);
 
 			List<TableDetail> tableDetail = bookingRepository.findByUserId(userId);
@@ -168,6 +167,43 @@ public class UserHomeServiceImpl implements UserHomeService {
 			throw new BusinessException(e.getMessage());
 		}
 		return details;
+	}
+
+	@Override
+	public FoodCategory getFoodCategory() {
+		logger.info("inside getFoodCategory() in UserHomeServiceImpl");
+
+		FoodCategory foodCategory = new FoodCategory();
+
+		try {
+
+			//List<String> category = adminRepository.findByCategory();
+
+		//	foodCategory.setFoodCategory(category);
+
+		} catch (Exception e) {
+			logger.error("ERROR " + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return foodCategory;
+	}
+
+	@Override
+	public Food getCategoryDetails(String category) {
+		logger.info("inside getCategoryDetails() in UserHomeServiceImpl");
+		
+		Food food = new Food();
+		
+		try {
+			
+			food = adminRepository.findByCategory(category);
+			
+			
+		} catch (Exception e) {
+			logger.error("ERROR " + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return null;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.constants.AppConstants;
+import com.pos.app.dto.FoodCategory;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.model.FoodOrder;
@@ -80,6 +81,36 @@ public class UserHomeController {
 		StatusResponse response = new StatusResponse();
 		response.setData(history);
 		response.setMessage("History details");
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/food-category")
+	public ResponseEntity<?> getFoodCategory(){
+		
+		logger.info("inside getFoodCategory() in UserHomeController ");
+		
+		FoodCategory category = userHomeService.getFoodCategory();
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(category);
+		response.setMessage("Food Category");
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/category-detail")
+	public ResponseEntity<?> getCategoryDetails(){
+		
+		logger.info("inside getCategoryDetails() in UserHomeController ");
+		
+		FoodCategory category = userHomeService.getFoodCategory();
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(category);
+		response.setMessage("Food Category");
 		response.setStatus(AppConstants.STATUS_SUCCESS);
 		
 		return ResponseEntity.ok(response);

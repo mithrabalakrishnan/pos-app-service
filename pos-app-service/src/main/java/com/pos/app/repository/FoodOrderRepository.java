@@ -11,5 +11,5 @@ import com.pos.app.model.FoodOrder;
 public interface FoodOrderRepository extends JpaRepository<FoodOrder, Integer> {
 
 	public List<FoodOrder> findByUserId(Integer userId);
-
+	
 }
