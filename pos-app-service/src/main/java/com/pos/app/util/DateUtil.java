@@ -86,7 +86,7 @@ public class DateUtil {
 	}
 	
 	
-	
+/*	
 
 	public static void main(String[] args) {
 		// System.out.println(convertStringToDate("17-Mar-2022"));
@@ -108,5 +108,5 @@ public class DateUtil {
 		System.out.println(getMonth("2022-12-18"));
 		// System.out.println(getCurrentDate());
 	}
-
+*/
 }
