@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pos.app.dto.FoodUpdate;
 import com.pos.app.exception.BusinessException;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.repository.FoodOrderRepository;
@@ -37,6 +38,29 @@ public class KitchenServiceImpl implements KitchenService {
 		}
 		return foodOrder;
 
+	}
+
+	@Override
+	public FoodOrder updateOrderList(FoodUpdate update) {
+		
+		logger.info("inside getOrderList()  in KitchenServiceImpl");
+		
+		FoodOrder order = new FoodOrder();
+		
+		try {
+			
+			order = orderRepository.findByFoodIdAndUserId(update.getFoodId(),update.getUserId());
+			
+			order.setStatus(update.getStatus());
+			
+			orderRepository.save(order);
+			
+			
+		}catch (BusinessException e) {
+			logger.error("ERROR:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return order;
 	}
 
 }

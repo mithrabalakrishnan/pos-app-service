@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.constants.AppConstants;
+import com.pos.app.dto.FoodUpdate;
 import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.service.KitchenService;
@@ -35,21 +36,21 @@ public class KitchenController {
 		StatusResponse response = new StatusResponse();
 		response.setData(orders);
 		response.setStatus(AppConstants.STATUS_SUCCESS);
-		response.setMessage("User Home Details");
+		response.setMessage("Food Details");
 		return ResponseEntity.ok(response);
 
 	}
 	
 	@Update("/kitchen-order")
-	public ResponseEntity<?> updateOrder(@RequestBody Food odd) {
+	public ResponseEntity<?> updateOrder(@RequestBody FoodUpdate foodUpdate) {
 		
 		logger.info("inside updateOrder() in KitchenController");
 
-		List<FoodOrder> orders = kitchenService.getOrderList();
+		FoodOrder order= kitchenService.updateOrderList(foodUpdate);
 		StatusResponse response = new StatusResponse();
-		response.setData(orders);
+		response.setData(order);
 		response.setStatus(AppConstants.STATUS_SUCCESS);
-		response.setMessage("User Home Details");
+		response.setMessage("Updated..");
 		return ResponseEntity.ok(response);
 
 	}

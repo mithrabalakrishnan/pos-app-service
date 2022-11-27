@@ -15,7 +15,9 @@ public class FoodOrderDTO implements Serializable {
 
 	private List<Integer> totalPrice;
 
-	private String timeDate;
+	private String time;
+	
+	private String date;
 
 	public FoodOrderDTO() {
 
@@ -37,13 +39,7 @@ public class FoodOrderDTO implements Serializable {
 		this.tableId = tableId;
 	}
 
-	public String getTimeDate() {
-		return timeDate;
-	}
-
-	public void setTimeDate(String timeDate) {
-		this.timeDate = timeDate;
-	}
+	
 
 	public List<Integer> getQuanty() {
 		return quanty;
@@ -61,14 +57,32 @@ public class FoodOrderDTO implements Serializable {
 		this.totalPrice = totalPrice;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public FoodOrderDTO(List<Integer> foodId, List<Integer> quanty, Integer tableId, List<Integer> totalPrice,
-			String timeDate) {
+			String time, String date) {
 		super();
 		this.foodId = foodId;
 		this.quanty = quanty;
 		this.tableId = tableId;
 		this.totalPrice = totalPrice;
-		this.timeDate = timeDate;
+		this.time = time;
+		this.date = date;
 	}
 
+	
 }

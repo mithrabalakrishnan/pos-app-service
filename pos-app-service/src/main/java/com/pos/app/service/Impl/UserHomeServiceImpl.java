@@ -27,6 +27,7 @@ import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.repository.UserRepository;
 import com.pos.app.service.UserHomeService;
+import com.pos.app.util.DateUtil;
 import com.pos.app.vo.MenuDetails;
 
 @Service
@@ -122,7 +123,11 @@ public class UserHomeServiceImpl implements UserHomeService {
 			order.setUserId((int) user.getId());
 
 			order.setTableId(oderDto.getTableId());
-			order.setTimeDate(oderDto.getTimeDate());
+			order.setDate(oderDto.getDate());
+			order.setTime(oderDto.getTime());
+			order.setDay(DateUtil.getDay(oderDto.getDate()));
+			order.setMonth(DateUtil.getMonth(oderDto.getDate()));
+			order.setYear(DateUtil.getYear(oderDto.getDate()));
 
 			for (int i = 0; i < oderDto.getFoodId().size(); i++) {
 				order.setFoodId(oderDto.getFoodId().get(i));
