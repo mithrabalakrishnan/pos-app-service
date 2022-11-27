@@ -112,7 +112,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -129,7 +129,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -146,7 +146,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -163,7 +163,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -180,7 +180,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -197,7 +197,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -214,7 +214,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -231,7 +231,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -248,7 +248,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -265,7 +265,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -282,7 +282,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);
@@ -299,7 +299,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(i).getUserId());
+						customerList.add(oder.get(j).getUserId());
 					}
 
 					monthAmount.add(totalPrice);

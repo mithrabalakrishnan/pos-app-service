@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +42,7 @@ public class KitchenController {
 
 	}
 	
-	@Update("/kitchen-order")
+	@PutMapping("/kitchen-order")
 	public ResponseEntity<?> updateOrder(@RequestBody FoodUpdate foodUpdate) {
 		
 		logger.info("inside updateOrder() in KitchenController");
