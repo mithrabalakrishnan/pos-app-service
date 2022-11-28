@@ -52,7 +52,10 @@ public class KitchenServiceImpl implements KitchenService {
 			
 			for(int i=0;i<foodOrder.size();i++) {
 				
-				Food food = adminRepository.findByFoodId(foodOrder.get(i).getFoodId());
+				
+				Integer userId = foodOrder.get(i).getUserId();
+				
+				Food food = adminRepository.findByFoodIdAndUserId(foodOrder.get(i).getFoodId(), userId);
 				Optional<User> user = userRepository.findById(Long.valueOf(foodOrder.get(i).getUserId()));
 				
 				

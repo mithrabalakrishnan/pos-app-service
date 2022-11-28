@@ -18,7 +18,9 @@ public interface AdminRepository extends JpaRepository<Food, Integer>{
 	
 	public Food findByFoodId(Integer foodId);
 	
+	public Food findByFoodId(Integer id, Integer userId);
 	
+	public  Food findByFoodIdAndUserId(Integer fid, Integer uid);
 //	@Query("select f.category from food f")
 //	public List<String> findByCategory();
 	
