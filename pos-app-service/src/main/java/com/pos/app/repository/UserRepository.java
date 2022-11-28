@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.pos.app.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 	
 	public User findByUsername(String username);
 	
@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	public String findByPhone(String phone);
 	
-	public Optional<User> findById(Integer id); 
+	public Optional<User> findById(Long id); 
 	
 	
 	
