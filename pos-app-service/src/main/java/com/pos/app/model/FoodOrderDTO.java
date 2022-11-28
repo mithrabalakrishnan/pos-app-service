@@ -18,6 +18,8 @@ public class FoodOrderDTO implements Serializable {
 	private String time;
 	
 	private String date;
+	
+	
 
 	public FoodOrderDTO() {
 
