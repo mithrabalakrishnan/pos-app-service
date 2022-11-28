@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.FoodUpdate;
+import com.pos.app.dto.FoodUpdateOrderDTO;
 import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.service.KitchenService;
@@ -33,7 +34,7 @@ public class KitchenController {
 	public ResponseEntity<?> getOrderList() {
 		logger.info("inside getOrderList() in KitchenController");
 
-		List<FoodOrder> orders = kitchenService.getOrderList();
+		List<FoodUpdateOrderDTO> orders = kitchenService.getOrderList();
 		StatusResponse response = new StatusResponse();
 		response.setData(orders);
 		response.setStatus(AppConstants.STATUS_SUCCESS);

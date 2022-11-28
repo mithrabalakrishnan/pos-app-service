@@ -1,6 +1,8 @@
 package com.pos.app.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pos.app.dto.FoodCategory;
+import com.pos.app.dto.FoodUpdateOrderDTO;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
 import com.pos.app.exception.BusinessException;
@@ -135,6 +138,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 				order.setFoodId(oderDto.getFoodId().get(i));
 				order.setQuanty(oderDto.getQuanty().get(i));
 				order.setTotalPrice(oderDto.getTotalPrice().get(i));
+				order.setStatus("To Do");
 				orderRepository.save(order);
 			}
 
@@ -164,9 +168,12 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			List<FoodOrder> orderList = orderRepository.findByUserId(userId);
 
+			List<FoodUpdateOrderDTO> foodOrderList = getOrderList(orderList);
+			
 			List<TableDetail> tableDetail = bookingRepository.findByUserId(userId);
 
-			details.setOrderList(orderList);
+//			details.setOrderList(orderList);
+			details.setFoodOrderList(foodOrderList);
 			details.setTableList(tableDetail);
 
 		} catch (BusinessException e) {
@@ -211,6 +218,38 @@ public class UserHomeServiceImpl implements UserHomeService {
 			throw new BusinessException(e.getMessage());
 		}
 		return null;
+	}
+	
+	
+	public List<FoodUpdateOrderDTO> getOrderList(List<FoodOrder> foodOrder){
+		
+		List<FoodUpdateOrderDTO> foodOrderList = new ArrayList<FoodUpdateOrderDTO>();
+		
+		for(int i=0;i<foodOrder.size();i++) {
+			
+			Food food = adminRepository.findByFoodId(foodOrder.get(i).getFoodId());
+			Optional<User> user = userRepository.findById(foodOrder.get(i).getId());
+			
+			
+			FoodUpdateOrderDTO foodUpdate = new FoodUpdateOrderDTO();
+			foodUpdate.setId(foodOrder.get(i).getId());
+			foodUpdate.setFoodId(foodOrder.get(i).getFoodId());
+			foodUpdate.setUserId(foodOrder.get(i).getUserId());
+			foodUpdate.setDate(foodOrder.get(i).getDate());
+			foodUpdate.setTime(foodOrder.get(i).getTime());
+			foodUpdate.setFoodName(food.getName());
+			foodUpdate.setUsername(user.get().getUsername());
+			foodUpdate.setQuanty(foodOrder.get(i).getQuanty());
+			foodUpdate.setStatus(foodOrder.get(i).getStatus());
+			foodUpdate.setTableId(foodOrder.get(i).getTableId());
+			
+			foodOrderList.add(foodUpdate);
+			
+			
+		}
+		
+		return foodOrderList;
+		
 	}
 
 }
