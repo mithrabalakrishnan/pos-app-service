@@ -28,13 +28,13 @@ public class FoodOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer orderId;
 	
 	@Column
-	private Integer userId;
+	private Integer userid;
 	
 	@Column
-	private Integer foodId;
+	private Integer foodid;
 	
 	@Column
 	private Integer quanty;
@@ -78,28 +78,30 @@ public class FoodOrder {
 		
 	}
 
-	public Integer getId() {
-		return id;
+	
+
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getUserid() {
+		return userid;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
-	public Integer getFoodId() {
-		return foodId;
+	public Integer getFoodid() {
+		return foodid;
 	}
 
-	public void setFoodId(Integer foodId) {
-		this.foodId = foodId;
+	public void setFoodid(Integer foodid) {
+		this.foodid = foodid;
 	}
 
 	public Integer getQuanty() {
@@ -153,12 +155,12 @@ public class FoodOrder {
 		this.year = year;
 	}
 
-	public FoodOrder(Integer id, Integer userId, Integer foodId, Integer quanty, Integer tableId, Integer totalPrice,
+	public FoodOrder(Integer orderid, Integer userid, Integer foodid, Integer quanty, Integer tableId, Integer totalPrice,
 			String date, String time, Integer day, String month, Integer year) {
 		super();
-		this.id = id;
-		this.userId = userId;
-		this.foodId = foodId;
+		this.orderId = orderid;
+		this.userid = userid;
+		this.foodid = foodid;
 		this.quanty = quanty;
 		this.tableId = tableId;
 		this.totalPrice = totalPrice;

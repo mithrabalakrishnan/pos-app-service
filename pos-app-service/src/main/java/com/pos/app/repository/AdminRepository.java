@@ -11,16 +11,16 @@ import com.pos.app.model.Food;
 @Repository
 public interface AdminRepository extends JpaRepository<Food, Integer>{
 	
-	public String findByName(String name);
+	// public String findByfoodName(String name);
 	
 	public List<Food> findByStatus(String status);
 	
 	
-	public Food findByFoodId(Integer foodId);
+	public Food findByFoodid(Integer foodId);
 	
-	public Food findByFoodId(Integer id, Integer userId);
+	//public Food findByFoodId(Integer id, Integer userId);
 	
-	public  Food findByFoodIdAndUserId(Integer fid, Integer uid);
+	//public  Food findByFoodIdAndUserId(Integer fid, Integer uid);
 //	@Query("select f.category from food f")
 //	public List<String> findByCategory();
 	

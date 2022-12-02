@@ -12,13 +12,13 @@ import com.pos.app.model.FoodOrder;
 @Repository
 public interface FoodOrderRepository extends JpaRepository<FoodOrder, Integer> {
 
-	public List<FoodOrder> findByUserId(Integer userId);
+	public List<FoodOrder> findByUserid(Integer userId);
 	
 	public List<FoodOrder> findByMonth(String month);
 	
-	public List<FoodOrder>  findByMonthAndFoodId(String month, int foodId);
+	public List<FoodOrder>  findByMonthAndFoodid(String month, int foodId);
 	
-	public FoodOrder findByFoodIdAndUserId(Integer foodId, Integer userrId);
+	public FoodOrder findByFoodidAndUserid(Integer foodId, Integer userrId);
 	
 //	@Query("select select fo.id, fo.user_id, fo.food_id, fo.quanty, fo.table_id, fo.total_price, fo.date, fo.time, fo.day, fo.month, fo.year, fd.name, ur.username from food_order as fo \"\r\n" + 
 //			"			+ \"join food as fd on fo.food_d = fd.food_id\"\r\n" + 

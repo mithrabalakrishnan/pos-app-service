@@ -10,7 +10,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int userid;
 	@Column
 	private String username;
 	
@@ -21,7 +21,7 @@ public class User {
 	private String lastName;
 	
 	@Column
-	private String phone;
+	private String phone_no;
 	
 	@Column
 	private String email;
@@ -29,6 +29,22 @@ public class User {
 	@Column
 	@JsonIgnore
 	private String password;
+	
+	private String role;
+	
+	
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
 
 	public User() {
 		
@@ -36,14 +52,16 @@ public class User {
 
 	
 
-	public long getId() {
-		return id;
+
+
+	public int getUserid() {
+		return userid;
 	}
 
 
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 
@@ -72,13 +90,19 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getPhone() {
-		return phone;
+	
+
+	public String getPhone_no() {
+		return phone_no;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+
+
+	public void setPhone_no(String phone_no) {
+		this.phone_no = phone_no;
 	}
+
+
 
 	public String getEmail() {
 		return email;
@@ -96,14 +120,14 @@ public class User {
 		this.password = password;
 	}
 
-	public User(Long id, String username, String firstName, String lastName, String phone, String email,
+	public User(Integer userid, String username, String firstName, String lastName, String phone, String email,
 			String password) {
 		super();
-		this.id = id;
+		this.userid = userid;
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.phone = phone;
+		this.phone_no = phone;
 		this.email = email;
 		this.password = password;
 	}

@@ -11,10 +11,10 @@ public class TableDetail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer tableid;
 
 	@Column
-	private Integer userId;
+	private Integer userid;
 
 	@Column
 	private String date;
@@ -32,30 +32,32 @@ public class TableDetail {
 
 	}
 
-	public TableDetail(Integer id, Integer userId, String date, String time, String members, String seatLocation) {
+	public TableDetail(Integer tableid, Integer userid, String date, String time, String members, String seatLocation) {
 		super();
-		this.id = id;
-		this.userId = userId;
+		this.tableid = tableid;
+		this.userid = userid;
 		this.date = date;
 		this.time = time;
 		this.members = members;
 		this.seatLocation = seatLocation;
 	}
 
-	public Integer getId() {
-		return id;
+	
+
+	public Integer getTableid() {
+		return tableid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTableid(Integer tableid) {
+		this.tableid = tableid;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getUserid() {
+		return userid;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
 	public String getDate() {

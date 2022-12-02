@@ -93,7 +93,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			User user = userRepository.findByUsername(username);
 
-			details.setUserId((int) user.getId());
+			details.setUserid(user.getUserid());
 			details.setDate(tableDto.getDate());
 			details.setTime(tableDto.getTime());
 			details.setMembers(tableDto.getMembers());
@@ -127,7 +127,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			for (int i = 0; i < oderDto.getFoodId().size(); i++) {
 				 order = new FoodOrder();
-				order.setUserId((int) user.getId());
+				order.setUserid( user.getUserid());
 
 				order.setTableId(oderDto.getTableId());
 				order.setDate(oderDto.getDate());
@@ -135,7 +135,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 				order.setDay(DateUtil.getDay(oderDto.getDate()));
 				order.setMonth(DateUtil.getMonth(oderDto.getDate()));
 				order.setYear(DateUtil.getYear(oderDto.getDate()));
-				order.setFoodId(oderDto.getFoodId().get(i));
+				order.setFoodid(oderDto.getFoodId().get(i));
 				order.setQuanty(oderDto.getQuanty().get(i));
 				order.setTotalPrice(oderDto.getTotalPrice().get(i));
 				order.setStatus("To Do");
@@ -164,13 +164,13 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			User user = userRepository.findByUsername(username);
 
-			Integer userId =  (int)user.getId();
+			Integer userId =  user.getUserid();
 
-			List<FoodOrder> orderList = orderRepository.findByUserId(userId);
+			List<FoodOrder> orderList = orderRepository.findByUserid(userId);
 
 			List<FoodUpdateOrderDTO> foodOrderList = getOrderList(orderList);
 			
-			List<TableDetail> tableDetail = bookingRepository.findByUserId(userId);
+			List<TableDetail> tableDetail = bookingRepository.findByUserid(userId);
 
 //			details.setOrderList(orderList);
 			details.setFoodOrderList(foodOrderList);
@@ -227,18 +227,18 @@ public class UserHomeServiceImpl implements UserHomeService {
 		
 		for(int i=0;i<foodOrder.size();i++) {
 			
-			Food food = adminRepository.findByFoodId(foodOrder.get(i).getFoodId());
-			Optional<User> user = userRepository.findById(Long.valueOf(foodOrder.get(i).getId()));
+			Food food = adminRepository.findByFoodid(foodOrder.get(i).getFoodid());
+			User user = userRepository.findByUserid(foodOrder.get(i).getUserid());
 			
 			
 			FoodUpdateOrderDTO foodUpdate = new FoodUpdateOrderDTO();
-			foodUpdate.setId(foodOrder.get(i).getId());
-			foodUpdate.setFoodId(foodOrder.get(i).getFoodId());
-			foodUpdate.setUserId(foodOrder.get(i).getUserId());
+			foodUpdate.setId(foodOrder.get(i).getOrderId());
+			foodUpdate.setFoodId(foodOrder.get(i).getFoodid());
+			foodUpdate.setUserId(foodOrder.get(i).getUserid());
 			foodUpdate.setDate(foodOrder.get(i).getDate());
 			foodUpdate.setTime(foodOrder.get(i).getTime());
-			foodUpdate.setFoodName(food.getName());
-			foodUpdate.setUsername(user.get().getUsername());
+			foodUpdate.setFoodName(food.getFood_name());
+			foodUpdate.setUsername(user.getUsername());
 			foodUpdate.setQuanty(foodOrder.get(i).getQuanty());
 			foodUpdate.setStatus(foodOrder.get(i).getStatus());
 			foodUpdate.setTableId(foodOrder.get(i).getTableId());

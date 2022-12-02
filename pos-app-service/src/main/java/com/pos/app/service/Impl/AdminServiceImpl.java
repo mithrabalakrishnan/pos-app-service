@@ -48,13 +48,13 @@ public class AdminServiceImpl implements AdminService {
 		try {
 
 			logger.info("before condition check --- AdminServiceImp");
-			if (adminRepository.findByName(food.getName()) != null) {
-				logger.info("food already found");
-				throw new BusinessException("This food already added");
-			}
+//			if (adminRepository.findByfoodName(food.getName()) != null) {
+//				logger.info("food already found");
+//				throw new BusinessException("This food already added");
+//			}
 
 			newMenu.setCategory(food.getCategory());
-			newMenu.setName(food.getName());
+			newMenu.setFood_name(food.getName());
 			newMenu.setPrice(food.getPrice());
 			newMenu.setRating(food.getRating());
 			newMenu.setStatus(food.getStatus());
@@ -112,7 +112,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -129,7 +129,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -146,7 +146,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -163,7 +163,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -180,7 +180,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -197,7 +197,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -214,7 +214,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -231,7 +231,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -248,7 +248,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -265,7 +265,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -282,7 +282,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -299,7 +299,7 @@ public class AdminServiceImpl implements AdminService {
 
 					for (int j = 0; j < oder.size(); j++) {
 						totalPrice += oder.get(j).getTotalPrice();
-						customerList.add(oder.get(j).getUserId());
+						customerList.add(oder.get(j).getUserid());
 					}
 
 					monthAmount.add(totalPrice);
@@ -362,13 +362,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("JANUARY", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("JANUARY", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -380,14 +380,14 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("FEBRUARY",
-								food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("FEBRUARY",
+								food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -400,13 +400,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("MARCH", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("MARCH", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -419,13 +419,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("APRIL", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("APRIL", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -438,13 +438,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("MAY", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("MAY", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -457,13 +457,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("JUNE", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("JUNE", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -476,13 +476,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("JULY", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("JULY", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -495,13 +495,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("AUGUST", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("AUGUST", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 					}
@@ -513,14 +513,14 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("SEPTEMBER",
-								food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("SEPTEMBER",
+								food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 					}
@@ -532,13 +532,13 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("OCTOBER", food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("OCTOBER", food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 					}
@@ -550,14 +550,14 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("NOVEMBER",
-								food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("NOVEMBER",
+								food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 
@@ -570,14 +570,14 @@ public class AdminServiceImpl implements AdminService {
 					List<Food> food = adminRepository.findAll();
 					for (int j = 0; j < food.size(); j++) {
 						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("DECEMBER",
-								food.get(j).getFoodId());
+						List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("DECEMBER",
+								food.get(j).getFoodid());
 
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getName(), foodPrice);
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
 						foodDetails.add(foodDetail);
 						priceList.add(foodPrice);
 					}
@@ -633,7 +633,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 1) {
 
 					Integer foodPrice = 0;
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("JANUARY", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("JANUARY", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -643,7 +643,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 2) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("FEBRUARY", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("FEBRUARY", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -654,7 +654,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 3) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("MARCH", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("MARCH", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -664,7 +664,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 4) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("APRIL", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("APRIL", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -675,7 +675,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 5) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("MAY", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("MAY", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -685,7 +685,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 6) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("JUNE", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("JUNE", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -696,7 +696,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 7) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("JULY", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("JULY", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -706,7 +706,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 8) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("AUGUST", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("AUGUST", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -717,7 +717,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 9) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("SEPTEMBER", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("SEPTEMBER", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -728,7 +728,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 10) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("OCTOBER", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("OCTOBER", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -739,7 +739,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 11) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("NOVEMBER", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("NOVEMBER", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();
@@ -750,7 +750,7 @@ public class AdminServiceImpl implements AdminService {
 				if (i == 12) {
 					Integer foodPrice = 0;
 
-					List<FoodOrder> oder = orderRepository.findByMonthAndFoodId("DECEMBER", foodId);
+					List<FoodOrder> oder = orderRepository.findByMonthAndFoodid("DECEMBER", foodId);
 
 					for (int k = 0; k < oder.size(); k++) {
 						foodPrice += oder.get(k).getTotalPrice();

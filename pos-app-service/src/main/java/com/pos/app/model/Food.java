@@ -12,10 +12,10 @@ public class Food {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer foodId;
+	private Integer foodid;
 	
 	@Column
-	private String name;
+	private String food_name;
 	
 	@Column
 	private String category;
@@ -42,11 +42,11 @@ public class Food {
 
 
 
-	public Food(Integer foodId, String name, String category, String rating, String price, String image,
+	public Food(Integer foodid, String food_name, String category, String rating, String price, String image,
 			String status) {
 		super();
-		this.foodId = foodId;
-		this.name = name;
+		this.foodid = foodid;
+		this.food_name = food_name;
 		this.category = category;
 		this.rating = rating;
 		this.price = price;
@@ -58,27 +58,39 @@ public class Food {
 
 
 
-	public Integer getFoodId() {
-		return foodId;
+	
+
+
+
+	public Integer getFoodid() {
+		return foodid;
 	}
 
 
 
-	public void setFoodId(Integer foodId) {
-		this.foodId = foodId;
+
+
+	public void setFoodid(Integer foodid) {
+		this.foodid = foodid;
 	}
 
 
 
-	public String getName() {
-		return name;
+
+
+	public String getFood_name() {
+		return food_name;
 	}
 
 
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setFood_name(String food_name) {
+		this.food_name = food_name;
 	}
+
+
 
 
 

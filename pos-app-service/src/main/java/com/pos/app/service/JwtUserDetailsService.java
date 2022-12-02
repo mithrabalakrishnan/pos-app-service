@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.pos.app.constants.AppConstants;
 import com.pos.app.exception.BusinessException;
+import com.pos.app.mapper.UserMapper;
 import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
 import com.pos.app.repository.UserRepository;
@@ -29,6 +30,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
+	
+//	@Autowired
+//	private UserMapper userMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -53,23 +57,24 @@ public class JwtUserDetailsService implements UserDetailsService {
 			newUser.setUsername(user.getUsername());
 			newUser.setFirstName(user.getFirstName());
 			newUser.setLastName(user.getLastName());
-			newUser.setPhone(user.getPhone());
+			newUser.setPhone_no(user.getPhone());
 			newUser.setEmail(user.getEmail());
 			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+			newUser.setRole(AppConstants.ROLE_USER);
 			
 			if(userRepository.findByEmail(newUser.getEmail())!=null) {
 				log.info("Email already registered");
 				throw new BusinessException("Email already registered");
-			}else if(userRepository.findByPhone(newUser.getPhone())!=null) {
-				log.info("Phone already registered");
-				throw new BusinessException("Phone already registered");
+//			}else if(userRepository.findByPhone(newUser.getPhone_no())!=null) {
+//				log.info("Phone already registered");
+//				throw new BusinessException("Phone already registered");
 			}else if(userRepository.findByUsername(newUser.getUsername())!=null) {
 				log.info("username already found");
 				throw new BusinessException("username already found");
 			}
 			
 			newUser = userRepository.save(newUser);
-			
+//			int result = userMapper.createUser(newUser);
 			
 			response.setStatus(AppConstants.STATUS_SUCCESS);
 			response.setMessage("User Registration Successfull");
