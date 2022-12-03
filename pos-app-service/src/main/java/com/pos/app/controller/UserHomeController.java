@@ -16,6 +16,7 @@ import com.pos.app.dto.TableDTO;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.TableDetail;
+import com.pos.app.model.User;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.vo.MenuDetails;
 import com.pos.app.vo.StatusResponse;
@@ -110,6 +111,21 @@ public class UserHomeController {
 		
 		StatusResponse response = new StatusResponse();
 		response.setData(category);
+		response.setMessage("Food Category");
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/user-profile")
+	public ResponseEntity<?> getUserProfile(){
+		
+		logger.info("inside getUserProfile() in UserHomeController ");
+		
+		User user = userHomeService.getUserProfile();
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(user);
 		response.setMessage("Food Category");
 		response.setStatus(AppConstants.STATUS_SUCCESS);
 		

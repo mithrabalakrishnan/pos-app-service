@@ -57,7 +57,7 @@ public class KitchenServiceImpl implements KitchenService {
 				
 				
 				FoodUpdateOrderDTO foodUpdate = new FoodUpdateOrderDTO();
-				foodUpdate.setId(foodOrder.get(i).getOrderId());
+				foodUpdate.setId(foodOrder.get(i).getOrderid());
 				foodUpdate.setFoodId(foodOrder.get(i).getFoodid());
 				foodUpdate.setUserId(foodOrder.get(i).getUserid());
 				foodUpdate.setDate(foodOrder.get(i).getDate());
@@ -66,7 +66,7 @@ public class KitchenServiceImpl implements KitchenService {
 				foodUpdate.setUsername(user.getUsername());
 				foodUpdate.setQuanty(foodOrder.get(i).getQuanty());
 				foodUpdate.setStatus(foodOrder.get(i).getStatus());
-				foodUpdate.setTableId(foodOrder.get(i).getTableId());
+				foodUpdate.setTableId(foodOrder.get(i).getTableid());
 				
 				foodOrderList.add(foodUpdate);
 				
@@ -90,11 +90,11 @@ public class KitchenServiceImpl implements KitchenService {
 		
 		try {
 			
-		//	order = orderRepository.findByFoodIdAndUserId(update.getFoodId(),update.getUserId());
+			order = orderRepository.findByOrderidAndUserid(update.getOrderId(),update.getUserId());
 			
 			order.setStatus(update.getStatus());
 			
-			//orderRepository.save(order);
+			orderRepository.save(order);
 			
 			
 		}catch (BusinessException e) {

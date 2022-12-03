@@ -6,7 +6,7 @@ public class FoodUpdate implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private Integer foodId;
+	private Integer orderId;
 	
 	private Integer userId;
 	
@@ -16,13 +16,7 @@ public class FoodUpdate implements Serializable{
 		
 	}
 
-	public Integer getFoodId() {
-		return foodId;
-	}
-
-	public void setFoodId(Integer foodId) {
-		this.foodId = foodId;
-	}
+	
 
 	public Integer getUserId() {
 		return userId;
@@ -39,6 +33,19 @@ public class FoodUpdate implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+	
 	
 	
 	

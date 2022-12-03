@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "7462f509-a39e-411c-9f81-53bb812aa7ed",
+		"name": "Pos App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Home",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/user-home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"user-home"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Table Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"12-05-2022\",\r\n    \"time\":\"9:00pm\",\r\n    \"members\":\"5\",\r\n    \"seatLocation\":\"Sider\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8013/table-booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"table-booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Food Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"foodId\":[1],\r\n    \"quanty\":[2],\r\n    \"tableId\":1,\r\n    \"totalPrice\":[150],\r\n    \"date\":\"2022-11-09\",\r\n    \"time\":\"9 pm\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8013/food-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"food-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/user-history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"user-history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/user-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Add Food - Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"biriyani\",\r\n        \"category\": \"fast_food\",\r\n        \"rating\": \"4.0\",\r\n        \"price\": \"4.00€\",\r\n        \"image\": \"image_url\",\r\n        \"status\": \"recent\"\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8013/add-menu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"add-menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Upload - Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY2NzY0ODk0MywiaWF0IjoxNjY3NjMwOTQzfQ.K4mLSDuBJmG5dP7qnj7f03OUL2uGUYej44GqrGqJQbgcJYqAfdHwjot-YkvE4NiVDs6jyniFksI6VxcIKQw0hw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive/Pictures/Capture.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8012/upload-file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8012",
+							"path": [
+								"upload-file"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order List - Admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/order-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"order-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly Report",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8013/report-monthly",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"report-monthly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly Sales Report",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8013/report-food-sales-monthly",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"report-food-sales-monthly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report-food-item-monthly",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/report-food-item-monthly?foodId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"report-food-item-monthly"
+							],
+							"query": [
+								{
+									"key": "foodId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Food Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8013/food-details",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"food-details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kitchen",
+			"item": [
+				{
+					"name": "Get Order Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/kitchen-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"kitchen-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":1,\r\n    \"orderId\":1,\r\n    \"status\":\"In progress\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8013/kitchen-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"kitchen-order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhamluIiwicm9sZXMiOltdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwOTAvYXBpL2xvZ2luIiwiZXhwIjoxNjQ0MzA3NzMyfQ.wuTOimOUV58o7rMx_2LUiaMlIBvgaBbs8DDj-Qdym6Q",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"Jinesh\",\r\n    \"lastName\":\"KP\",\r\n    \"username\":\"jineshkp\",\r\n    \"phone\":\"8137082713\",\r\n    \"email\":\"jineshkp@gmail.com\",\r\n    \"password\":\"Jinesh@116\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8013/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8013",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jineshkp\",\r\n    \"password\":\"Jinesh@116\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8013/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8013",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File Download",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY2NzY0ODk0MywiaWF0IjoxNjY3NjMwOTQzfQ.K4mLSDuBJmG5dP7qnj7f03OUL2uGUYej44GqrGqJQbgcJYqAfdHwjot-YkvE4NiVDs6jyniFksI6VxcIKQw0hw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8012/download-file/Capture.PNG",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8012",
+					"path": [
+						"download-file",
+						"Capture.PNG"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

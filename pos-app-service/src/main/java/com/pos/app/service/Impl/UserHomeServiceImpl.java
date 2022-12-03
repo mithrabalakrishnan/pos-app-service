@@ -123,13 +123,12 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			User user = userRepository.findByUsername(username);
 
-			
-
 			for (int i = 0; i < oderDto.getFoodId().size(); i++) {
-				 order = new FoodOrder();
-				order.setUserid( user.getUserid());
+				logger.info("inside foodOder() inside for loop UserHomeServiceImpl");
+				order = new FoodOrder();
+				order.setUserid(user.getUserid());
 
-				order.setTableId(oderDto.getTableId());
+				order.setTableid(oderDto.getTableId());
 				order.setDate(oderDto.getDate());
 				order.setTime(oderDto.getTime());
 				order.setDay(DateUtil.getDay(oderDto.getDate()));
@@ -164,12 +163,14 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 			User user = userRepository.findByUsername(username);
 
-			Integer userId =  user.getUserid();
+			Integer userId = user.getUserid();
+
+			logger.info("inside getHistory() in UserHomeServiceImpl  uderid= " + userId);
 
 			List<FoodOrder> orderList = orderRepository.findByUserid(userId);
 
 			List<FoodUpdateOrderDTO> foodOrderList = getOrderList(orderList);
-			
+
 			List<TableDetail> tableDetail = bookingRepository.findByUserid(userId);
 
 //			details.setOrderList(orderList);
@@ -191,9 +192,9 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 		try {
 
-			//List<String> category = adminRepository.findByCategory();
+			// List<String> category = adminRepository.findByCategory();
 
-		//	foodCategory.setFoodCategory(category);
+			// foodCategory.setFoodCategory(category);
 
 		} catch (Exception e) {
 			logger.error("ERROR " + e.getMessage());
@@ -205,34 +206,31 @@ public class UserHomeServiceImpl implements UserHomeService {
 	@Override
 	public Food getCategoryDetails(String category) {
 		logger.info("inside getCategoryDetails() in UserHomeServiceImpl");
-		
+
 		Food food = new Food();
-		
+
 		try {
-			
+
 			food = adminRepository.findByCategory(category);
-			
-			
+
 		} catch (Exception e) {
 			logger.error("ERROR " + e.getMessage());
 			throw new BusinessException(e.getMessage());
 		}
-		return null;
+		return food;
 	}
-	
-	
-	public List<FoodUpdateOrderDTO> getOrderList(List<FoodOrder> foodOrder){
-		
+
+	public List<FoodUpdateOrderDTO> getOrderList(List<FoodOrder> foodOrder) {
+
 		List<FoodUpdateOrderDTO> foodOrderList = new ArrayList<FoodUpdateOrderDTO>();
-		
-		for(int i=0;i<foodOrder.size();i++) {
-			
+
+		for (int i = 0; i < foodOrder.size(); i++) {
+
 			Food food = adminRepository.findByFoodid(foodOrder.get(i).getFoodid());
 			User user = userRepository.findByUserid(foodOrder.get(i).getUserid());
-			
-			
+
 			FoodUpdateOrderDTO foodUpdate = new FoodUpdateOrderDTO();
-			foodUpdate.setId(foodOrder.get(i).getOrderId());
+			foodUpdate.setId(foodOrder.get(i).getOrderid());
 			foodUpdate.setFoodId(foodOrder.get(i).getFoodid());
 			foodUpdate.setUserId(foodOrder.get(i).getUserid());
 			foodUpdate.setDate(foodOrder.get(i).getDate());
@@ -241,15 +239,33 @@ public class UserHomeServiceImpl implements UserHomeService {
 			foodUpdate.setUsername(user.getUsername());
 			foodUpdate.setQuanty(foodOrder.get(i).getQuanty());
 			foodUpdate.setStatus(foodOrder.get(i).getStatus());
-			foodUpdate.setTableId(foodOrder.get(i).getTableId());
-			
+			foodUpdate.setTableId(foodOrder.get(i).getTableid());
+
 			foodOrderList.add(foodUpdate);
-			
-			
+
 		}
-		
+
 		return foodOrderList;
+
+	}
+
+	@Override
+	public User getUserProfile() {
 		
+		logger.info("inside getUserProfile() in UserHomeServiceImpl");
+		User user = new User();
+		try {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			String username = userDetails.getUsername();
+
+			user = userRepository.findByUsername(username);
+
+		} catch (Exception e) {
+			logger.error("ERROR " + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return user;
 	}
 
 }
