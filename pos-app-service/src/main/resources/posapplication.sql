@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `posapplication`
 --
+CREATE DATABASE IF NOT EXISTS posapplication;
+-- drop database posapplication;
+use posapplication;
 
 -- --------------------------------------------------------
 
