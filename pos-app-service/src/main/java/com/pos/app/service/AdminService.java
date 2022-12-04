@@ -6,7 +6,10 @@ import com.pos.app.dto.FoodDTO;
 import com.pos.app.dto.FoodSaleReportDto;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.ReportDataDto;
+import com.pos.app.dto.WeeklyReportDto;
 import com.pos.app.model.Food;
+import com.pos.app.model.UserDTO;
+import com.pos.app.vo.StatusResponse;
 
 public interface AdminService {
 	
@@ -21,4 +24,12 @@ public interface AdminService {
 	public List<Food> getFoodAllDetails();
 	
 	public List<Integer> getReportFoodItemMonthly(Integer foodId);
+	
+	public ReportDataDto getWeeklyReport(List<String> dateList);
+	
+	public FoodSaleReportDto getWeeklyFoodReport(List<String> dateList);
+	
+	public List<Integer> getReportFoodItemWeekly(WeeklyReportDto reportData);
+	
+	public StatusResponse kichenUser(UserDTO user);
 }

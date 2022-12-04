@@ -7,12 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.FoodCategory;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
+import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.TableDetail;
@@ -103,14 +105,14 @@ public class UserHomeController {
 	}
 	
 	@GetMapping("/category-detail")
-	public ResponseEntity<?> getCategoryDetails(){
+	public ResponseEntity<?> getCategoryDetails(@RequestParam String category){
 		
 		logger.info("inside getCategoryDetails() in UserHomeController ");
 		
-		FoodCategory category = userHomeService.getFoodCategory();
+		Food food = userHomeService.getDetailFoodCategory(category);
 		
 		StatusResponse response = new StatusResponse();
-		response.setData(category);
+		response.setData(food);
 		response.setMessage("Food Category");
 		response.setStatus(AppConstants.STATUS_SUCCESS);
 		

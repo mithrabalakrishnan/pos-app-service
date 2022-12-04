@@ -191,9 +191,16 @@ public class UserHomeServiceImpl implements UserHomeService {
 		FoodCategory foodCategory = new FoodCategory();
 
 		try {
-
-			// List<String> category = adminRepository.findByCategory();
-
+			List<String> category = new ArrayList<>();
+			List<Food> food = adminRepository.findAll();
+			
+			for(int i=0;i<food.size();i++) {
+				category.add(food.get(i).getCategory());
+			}
+			
+			//List<String> catg = removeDuplicate(category);
+			
+			foodCategory.setFoodCategory(removeDuplicate(category));
 			// foodCategory.setFoodCategory(category);
 
 		} catch (Exception e) {
@@ -212,6 +219,8 @@ public class UserHomeServiceImpl implements UserHomeService {
 		try {
 
 			food = adminRepository.findByCategory(category);
+			
+			
 
 		} catch (Exception e) {
 			logger.error("ERROR " + e.getMessage());
@@ -266,6 +275,32 @@ public class UserHomeServiceImpl implements UserHomeService {
 			throw new BusinessException(e.getMessage());
 		}
 		return user;
+	}
+	
+	@Override
+	public Food getDetailFoodCategory(String category) {
+		logger.info("inside getDetailFoodCategory() in UserHomeServiceImpl");
+		
+		Food food = new Food();
+		try {
+			food = adminRepository.findByCategory(category);
+			
+		} catch (Exception e) {
+			logger.error("ERROR " + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return food;
+	}
+	
+	private static List<String> removeDuplicate(List<String> details) {
+		List<String> newList = new ArrayList<String>();
+
+		for (String value : details) {
+			if (!newList.contains(value)) {
+				newList.add(value);
+			}
+		}
+		return newList;
 	}
 
 }

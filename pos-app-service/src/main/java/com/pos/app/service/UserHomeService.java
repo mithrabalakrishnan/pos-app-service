@@ -27,6 +27,8 @@ public interface UserHomeService {
 	
 	public User getUserProfile();
 	
+	public Food getDetailFoodCategory(String category);
+	
 	
 
 }

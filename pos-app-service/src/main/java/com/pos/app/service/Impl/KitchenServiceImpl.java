@@ -64,6 +64,7 @@ public class KitchenServiceImpl implements KitchenService {
 				foodUpdate.setTime(foodOrder.get(i).getTime());
 				foodUpdate.setFoodName(food.getFood_name());
 				foodUpdate.setUsername(user.getUsername());
+				foodUpdate.setUserPhoneNumber(user.getPhone_no());
 				foodUpdate.setQuanty(foodOrder.get(i).getQuanty());
 				foodUpdate.setStatus(foodOrder.get(i).getStatus());
 				foodUpdate.setTableId(foodOrder.get(i).getTableid());

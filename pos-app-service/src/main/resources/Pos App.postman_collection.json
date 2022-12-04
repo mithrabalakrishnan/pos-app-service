@@ -150,6 +150,69 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8013/food-category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"food-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8013/category-detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"category-detail"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -355,6 +418,160 @@
 							"port": "8013",
 							"path": [
 								"food-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weekly Report",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA4MjUwOCwiaWF0IjoxNjcwMDY0NTA4fQ.Ac_RvqSzhFtJluBr-4adBliDo47kpeQOdHcTSbbg-kVyLDlw85KJdW-bFJ7tMuoTOqRNmhiPULre3q7NKmXv1w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dateList",
+									"value": "[\"2022-11-29\"]",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8013/report-weekly",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"report-weekly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report-food-sales-weekly",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dateList",
+									"value": "[\"2022-11-29\"]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8013/report-food-sales-weekly",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"report-food-sales-weekly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report-food-item-weekly",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "dateList",
+									"value": "[\"2022-11-21\"]",
+									"type": "text"
+								},
+								{
+									"key": "foodId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8013/report-food-item-weekly",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"report-food-item-weekly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kitchen-register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaW5lc2hrcCIsImV4cCI6MTY3MDA2MzM5OCwiaWF0IjoxNjcwMDQ1Mzk4fQ.vVQoevm4a0SVXjb2Ebzhl61ujFrxMYpdK1_c2UY_Ibd6QqoYUm2mC-nk9WS-TwbOgbIlWR4868xJtZ086vk3dw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Jinesh\",\r\n    \"lastName\":\"KP\",\r\n    \"username\":\"jineshkp\",\r\n    \"phone\":\"8137082713\",\r\n    \"email\":\"jineshkp@gmail.com\",\r\n    \"password\":\"Jinesh@116\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8013/kitchen-register",
+							"host": [
+								"localhost"
+							],
+							"port": "8013",
+							"path": [
+								"kitchen-register"
 							]
 						}
 					},

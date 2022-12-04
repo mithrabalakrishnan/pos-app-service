@@ -20,6 +20,10 @@ public interface FoodOrderRepository extends JpaRepository<FoodOrder, Integer> {
 	
 	public FoodOrder findByOrderidAndUserid(Integer orderId, Integer userrId);
 	
+	public List<FoodOrder> findByDate(String date);
+	
+	public List<FoodOrder> findByDateAndFoodid(String date, Integer foodId);
+	
 //	@Query("select select fo.id, fo.user_id, fo.food_id, fo.quanty, fo.table_id, fo.total_price, fo.date, fo.time, fo.day, fo.month, fo.year, fd.name, ur.username from food_order as fo \"\r\n" + 
 //			"			+ \"join food as fd on fo.food_d = fd.food_id\"\r\n" + 
 //			"			+ \"join user as ur on fo.user_id = ur.id")

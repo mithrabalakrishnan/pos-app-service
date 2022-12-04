@@ -18,7 +18,9 @@ import com.pos.app.dto.FoodDTO;
 import com.pos.app.dto.FoodSaleReportDto;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.ReportDataDto;
+import com.pos.app.dto.WeeklyReportDto;
 import com.pos.app.model.Food;
+import com.pos.app.model.UserDTO;
 import com.pos.app.service.AdminService;
 import com.pos.app.vo.StatusResponse;
 
@@ -124,7 +126,61 @@ public class AdminController {
 	}
 	
 	
+	@GetMapping("/report-weekly")
+	public ResponseEntity<?> getWeeklyReport(@RequestParam List<String> dateList){
+		
+		logger.info("inside getWeeklyRepoart() in AdminController");
+		
+		ReportDataDto report = adminService.getWeeklyReport(dateList);
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(report);
+		response.setMessage("Data fetched Successfully");
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		
+		return ResponseEntity.ok(response);
+	}
 	
+	
+	@GetMapping("/report-food-sales-weekly")
+	public ResponseEntity<?> getReportFoodWeekly(@RequestParam List<String> dateList){
+		
+		logger.info("inside getReportFoodWeekly() in AdminController");
+		
+		FoodSaleReportDto report = adminService.getWeeklyFoodReport(dateList);
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(report);
+		response.setMessage("Data fetched Successfully");
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	
+	@GetMapping("/report-food-item-weekly")
+	public ResponseEntity<?> getReportFoodItemWeekly(@RequestParam List<String> dateList, Integer foodId){
+		
+		logger.info("inside getReportFoodItemWeekly() in AdminController");
+		WeeklyReportDto reportData = new WeeklyReportDto();
+		reportData.setDateList(dateList);
+		reportData.setFoodId(foodId);
+		
+		List<Integer> report = adminService.getReportFoodItemWeekly(reportData);
+		
+		StatusResponse response = new StatusResponse();
+		response.setData(report);
+		response.setMessage("Data fetched Successfully");
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	
+	@PostMapping( "/kitchen-register")
+	public ResponseEntity<?> kitchenUser(@RequestBody UserDTO user) throws Exception {
+		return ResponseEntity.ok(adminService.kichenUser(user));
+	}
 	
 	
 	
