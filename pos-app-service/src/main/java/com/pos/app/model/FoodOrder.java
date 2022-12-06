@@ -66,17 +66,17 @@ public class FoodOrder {
 	@Column
 	private String status;
 	
-	private List<String> kichen_phone;
+	//private List<String> kichen_phone;
 	
 	
 
-	public List<String> getKichen_phone() {
-		return kichen_phone;
-	}
-
-	public void setKichen_phone(List<String> kichen_phone) {
-		this.kichen_phone = kichen_phone;
-	}
+//	public List<String> getKichen_phone() {
+//		return kichen_phone;
+//	}
+//
+//	public void setKichen_phone(List<String> kichen_phone) {
+//		this.kichen_phone = kichen_phone;
+//	}
 
 	public String getStatus() {
 		return status;

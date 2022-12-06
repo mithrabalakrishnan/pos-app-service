@@ -141,14 +141,14 @@ public class UserHomeServiceImpl implements UserHomeService {
 				order.setStatus("To Do");
 				orderRepository.save(order);
 			}
-			
+		/*	
 			List<String> phone = new ArrayList<>();
 			List<User> kichecUser = userRepository.findByRole(AppConstants.ROLE_KITCHEN);
 			
 			for(int j = 0; j<kichecUser.size();j++) {
 				phone.add(kichecUser.get(j).getPassword());
-			}
-			order.setKichen_phone(phone);
+			}*/
+			//order.setKichen_phone(phone);
 
 		} catch (BusinessException e) {
 			logger.error("ERROR " + e.getMessage());
