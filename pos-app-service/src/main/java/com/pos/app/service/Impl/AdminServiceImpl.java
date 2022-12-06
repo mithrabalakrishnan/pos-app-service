@@ -867,6 +867,7 @@ public class AdminServiceImpl implements AdminService {
 				}
 			}
 
+			sales.setFood_name_list(foodList);
 			sales.setChart_data(priceList);
 			sales.setFood_details(foodDetails);
 			sales.setType("Weekly");

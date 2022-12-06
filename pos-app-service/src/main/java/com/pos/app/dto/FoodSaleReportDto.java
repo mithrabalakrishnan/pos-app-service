@@ -9,6 +9,8 @@ public class FoodSaleReportDto implements Serializable{
 	
 	private String type;
 	
+	private List<String> food_name_list;
+	
 	private List<FoodDetailsDto> food_details;
 	
 	private List<Integer> chart_data;
@@ -38,6 +40,16 @@ public class FoodSaleReportDto implements Serializable{
 	}
 	
 	
+	
+	
+	public List<String> getFood_name_list() {
+		return food_name_list;
+	}
+
+	public void setFood_name_list(List<String> food_name_list) {
+		this.food_name_list = food_name_list;
+	}
+
 	public FoodSaleReportDto() {
 		// TODO Auto-generated constructor stub
 	}
