@@ -112,10 +112,11 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 
 	@Override
-	public FoodOrder foodOder(FoodOrderDTO oderDto) throws BusinessException {
+	public FoodOrderResponse foodOder(FoodOrderDTO oderDto) throws BusinessException {
 		logger.info("inside foodOder() in UserHomeServiceImpl");
 
 		FoodOrder order = new FoodOrder();
+		FoodOrderResponse response = new FoodOrderResponse();
 
 		try {
 
@@ -149,7 +150,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 			for(int j = 0; j<kichecUser.size();j++) {
 				phone.add(kichecUser.get(j).getPassword());
 			}
-			FoodOrderResponse response = new FoodOrderResponse();
+			
 			response.setFoodOrder(order);
 			response.setPhone(phone);
 			//order.setKichen_phone(phone);
@@ -158,7 +159,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 			logger.error("ERROR " + e.getMessage());
 			throw new BusinessException(e.getMessage());
 		}
-		return order;
+		return response;
 	}
 
 	@Override
