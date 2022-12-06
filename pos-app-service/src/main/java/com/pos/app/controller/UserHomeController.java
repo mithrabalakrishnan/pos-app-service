@@ -17,6 +17,7 @@ import com.pos.app.dto.TableDTO;
 import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
+import com.pos.app.model.FoodOrderResponse;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
 import com.pos.app.service.UserHomeService;
@@ -64,7 +65,7 @@ public class UserHomeController {
 	public ResponseEntity<?> foodOdering( @RequestBody FoodOrderDTO orderDto){
 		logger.info("inside foodOdering() in UserHomeController ");
 		
-		FoodOrder order = userHomeService.foodOder(orderDto);
+		FoodOrderResponse  order = userHomeService.foodOder(orderDto);
 		
 		StatusResponse response = new StatusResponse();
 		response.setData(order);
