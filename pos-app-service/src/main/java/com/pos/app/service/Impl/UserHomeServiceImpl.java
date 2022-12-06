@@ -148,7 +148,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 			List<User> kichecUser = userRepository.findByRole(AppConstants.ROLE_KITCHEN);
 			
 			for(int j = 0; j<kichecUser.size();j++) {
-				phone.add(kichecUser.get(j).getPassword());
+				phone.add(kichecUser.get(j).getPhone_no());
 			}
 			
 			response.setFoodOrder(order);
