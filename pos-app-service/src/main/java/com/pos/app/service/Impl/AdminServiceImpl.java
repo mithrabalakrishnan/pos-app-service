@@ -841,6 +841,7 @@ public class AdminServiceImpl implements AdminService {
 			List<FoodDetailsDto> foodDetails = new ArrayList<>();
 
 			List<Integer> priceList = new ArrayList<Integer>();
+			List<String> foodList = new ArrayList<String>();
 
 			for (int i = 0; i < dateList.size(); i++) {
 
@@ -854,12 +855,13 @@ public class AdminServiceImpl implements AdminService {
 					logger.info("inside getWeeklyFoodReport()  " + oder);
 
 					for (int k = 0; k < oder.size(); k++) {
-						foodPrice += oder.get(k).getTotalPrice();
+						foodPrice = foodPrice + oder.get(k).getTotalPrice();
 					}
 					if (foodPrice != 0) {
-//						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-//						foodDetails.add(foodDetail);
-					priceList.add(foodPrice);
+						if(!foodList.contains(food.get(j).getFood_name())){
+							foodList.add(food.get(j).getFood_name());
+						}
+						priceList.add(foodPrice);
 					}
 
 				}
