@@ -45,7 +45,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private FoodOrderRepository orderRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -833,7 +833,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public FoodSaleReportDto getWeeklyFoodReport(List<String> dateList) {
 		logger.info("inside getWeeklyFoodReport()  in AdminServiceImpl");
-		
+
 		FoodSaleReportDto sales = new FoodSaleReportDto();
 
 		try {
@@ -842,33 +842,151 @@ public class AdminServiceImpl implements AdminService {
 
 			List<Integer> priceList = new ArrayList<Integer>();
 
-			for (int i = 0; i < dateList.size(); i++) {
+			for (int i = 1; i <= dateList.size(); i++) {
 
-				List<Food> food = adminRepository.findAll();
-				
-				for (int j = 0; j < food.size(); j++) {
-					Integer foodPrice = 0;
-					List<FoodOrder> oder = orderRepository.findByDate(dateList.get(i));
+				if (i == 1) {
 
-					for (int k = 0; k < oder.size(); k++) {
-						foodPrice += oder.get(k).getTotalPrice();
+					List<Food> food = adminRepository.findAll();
+
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i),
+								food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  " + oder);
+
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
 					}
-
-					FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-					foodDetails.add(foodDetail);
-					priceList.add(foodPrice);
-
 				}
-				
-				
+				if (i == 2) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+				if(i==3) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+				if(i==4) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+				if(i==5) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+				if(i==6) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+				if(i==7) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+
 			}
-			
+
 			sales.setChart_data(priceList);
 			sales.setFood_details(foodDetails);
 			sales.setType("Weekly");
 
 			logger.info("inside getWeeklyFoodReport() sales Report  in AdminServiceImpl");
-
 
 		} catch (BusinessException e) {
 			logger.error("ERROR:" + e.getMessage());
@@ -877,50 +995,45 @@ public class AdminServiceImpl implements AdminService {
 
 		return sales;
 	}
-	
+
 	@Override
 	public List<Integer> getReportFoodItemWeekly(WeeklyReportDto reportData) {
-		
+
 		logger.info("inside getReportFoodItemWeekly()  in AdminServiceImpl");
 
 		List<Integer> chart_data = new ArrayList<Integer>();
-		
-		
+
 		try {
-			
+
 			List<String> dateList = reportData.getDateList();
 			Integer foodId = reportData.getFoodId();
-			
-			for(int i=0;i<dateList.size();i++) {
+
+			for (int i = 0; i < dateList.size(); i++) {
 				Integer foodPrice = 0;
-				List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i),foodId);
-				
+				List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), foodId);
+
 				for (int k = 0; k < oder.size(); k++) {
 					foodPrice += oder.get(k).getTotalPrice();
 				}
 				chart_data.add(foodPrice);
-				
+
 			}
-			
-			
-			
-			
+
 		} catch (BusinessException e) {
 			logger.error("ERROR:" + e.getMessage());
 			throw new BusinessException(e.getMessage());
 		}
 		return chart_data;
 	}
-	
-	
+
 	@Override
 	public StatusResponse kichenUser(UserDTO user) {
 		StatusResponse response = new StatusResponse();
 		User newUser = new User();
-		
+
 		try {
 			logger.info("inside kichenUser()------ AdminServiceImpl class");
-			
+
 			newUser.setUsername(user.getUsername());
 			newUser.setFirstName(user.getFirstName());
 			newUser.setLastName(user.getLastName());
@@ -928,27 +1041,27 @@ public class AdminServiceImpl implements AdminService {
 			newUser.setEmail(user.getEmail());
 			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 			newUser.setRole(AppConstants.ROLE_KITCHEN);
-			
-			if(userRepository.findByEmail(newUser.getEmail())!=null) {
+
+			if (userRepository.findByEmail(newUser.getEmail()) != null) {
 				logger.info("Email already registered");
 				throw new BusinessException("Email already registered");
 //			}else if(userRepository.findByPhone(newUser.getPhone_no())!=null) {
 //				log.info("Phone already registered");
 //				throw new BusinessException("Phone already registered");
-			}else if(userRepository.findByUsername(newUser.getUsername())!=null) {
+			} else if (userRepository.findByUsername(newUser.getUsername()) != null) {
 				logger.info("username already found");
 				throw new BusinessException("username already found");
 			}
-			
+
 			newUser = userRepository.save(newUser);
 //			int result = userMapper.createUser(newUser);
-			
+
 			response.setStatus(AppConstants.STATUS_SUCCESS);
 			response.setMessage("Kitchen User Registration Successfull");
 			response.setData(newUser);
-			
-		}catch(BusinessException e) {
-			logger.error("Error Message:"+ e.getMessage());
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
 			throw new BusinessException(e.getMessage());
 		}
 		return response;

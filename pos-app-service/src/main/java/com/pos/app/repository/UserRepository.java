@@ -1,5 +1,6 @@
 package com.pos.app.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //	public String findByPhone(String phone);
 
 	public User findByUserid(Integer userId);
+	
+	public List<User> findByRole(String role);
 
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.FoodCategory;
 import com.pos.app.dto.FoodUpdateOrderDTO;
 import com.pos.app.dto.OrderDetailsDto;
@@ -140,6 +141,14 @@ public class UserHomeServiceImpl implements UserHomeService {
 				order.setStatus("To Do");
 				orderRepository.save(order);
 			}
+			
+			List<String> phone = new ArrayList<>();
+			List<User> kichecUser = userRepository.findByRole(AppConstants.ROLE_KITCHEN);
+			
+			for(int j = 0; j<kichecUser.size();j++) {
+				phone.add(kichecUser.get(j).getPassword());
+			}
+			order.setKichen_phone(phone);
 
 		} catch (BusinessException e) {
 			logger.error("ERROR " + e.getMessage());
