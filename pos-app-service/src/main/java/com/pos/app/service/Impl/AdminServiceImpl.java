@@ -858,11 +858,11 @@ public class AdminServiceImpl implements AdminService {
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
-
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
-
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 					}
 				}
 				if (i == 1) {
@@ -877,11 +877,11 @@ public class AdminServiceImpl implements AdminService {
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
-
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
-
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 					}
 				}
 				if(i==2) {
@@ -897,9 +897,11 @@ public class AdminServiceImpl implements AdminService {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 
 					}
 				}
@@ -916,9 +918,11 @@ public class AdminServiceImpl implements AdminService {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 
 					}
 				}
@@ -935,9 +939,11 @@ public class AdminServiceImpl implements AdminService {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 
 					}
 				}
@@ -954,9 +960,11 @@ public class AdminServiceImpl implements AdminService {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
 
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 
 					}
 				}
@@ -972,11 +980,11 @@ public class AdminServiceImpl implements AdminService {
 						for (int k = 0; k < oder.size(); k++) {
 							foodPrice += oder.get(k).getTotalPrice();
 						}
-
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
-
+						if(foodPrice!=0) {
+							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+							foodDetails.add(foodDetail);
+							priceList.add(foodPrice);
+						}
 					}
 				}
 
