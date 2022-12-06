@@ -24,6 +24,7 @@ import com.pos.app.exception.BusinessException;
 import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.FoodOrderDTO;
+import com.pos.app.model.FoodOrderResponse;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
 import com.pos.app.repository.AdminRepository;
@@ -141,13 +142,16 @@ public class UserHomeServiceImpl implements UserHomeService {
 				order.setStatus("To Do");
 				orderRepository.save(order);
 			}
-		/*	
+			
 			List<String> phone = new ArrayList<>();
 			List<User> kichecUser = userRepository.findByRole(AppConstants.ROLE_KITCHEN);
 			
 			for(int j = 0; j<kichecUser.size();j++) {
 				phone.add(kichecUser.get(j).getPassword());
-			}*/
+			}
+			FoodOrderResponse response = new FoodOrderResponse();
+			response.setFoodOrder(order);
+			response.setPhone(phone);
 			//order.setKichen_phone(phone);
 
 		} catch (BusinessException e) {
