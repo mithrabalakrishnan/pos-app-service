@@ -857,9 +857,9 @@ public class AdminServiceImpl implements AdminService {
 						foodPrice += oder.get(k).getTotalPrice();
 					}
 					if (foodPrice != 0) {
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
+//						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+//						foodDetails.add(foodDetail);
+					priceList.add(foodPrice);
 					}
 
 				}
