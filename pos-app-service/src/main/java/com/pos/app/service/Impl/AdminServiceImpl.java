@@ -842,9 +842,9 @@ public class AdminServiceImpl implements AdminService {
 
 			List<Integer> priceList = new ArrayList<Integer>();
 
-			for (int i = 1; i <= dateList.size(); i++) {
+			for (int i = 0; i < dateList.size(); i++) {
 
-				if (i == 1) {
+				if (i == 0) {
 
 					List<Food> food = adminRepository.findAll();
 
@@ -865,7 +865,26 @@ public class AdminServiceImpl implements AdminService {
 
 					}
 				}
-				if (i == 2) {
+				if (i == 1) {
+					List<Food> food = adminRepository.findAll();
+					
+					for (int j = 0; j < food.size(); j++) {
+						Integer foodPrice = 0;
+						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
+
+						logger.info("inside getWeeklyFoodReport()  "+oder);
+						
+						for (int k = 0; k < oder.size(); k++) {
+							foodPrice += oder.get(k).getTotalPrice();
+						}
+
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
+
+					}
+				}
+				if(i==2) {
 					List<Food> food = adminRepository.findAll();
 					
 					for (int j = 0; j < food.size(); j++) {
@@ -942,25 +961,6 @@ public class AdminServiceImpl implements AdminService {
 					}
 				}
 				if(i==6) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-
-						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-						foodDetails.add(foodDetail);
-						priceList.add(foodPrice);
-
-					}
-				}
-				if(i==7) {
 					List<Food> food = adminRepository.findAll();
 					
 					for (int j = 0; j < food.size(); j++) {
