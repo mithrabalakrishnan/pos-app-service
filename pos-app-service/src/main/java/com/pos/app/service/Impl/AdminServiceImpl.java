@@ -844,150 +844,25 @@ public class AdminServiceImpl implements AdminService {
 
 			for (int i = 0; i < dateList.size(); i++) {
 
-				if (i == 0) {
+				List<Food> food = adminRepository.findAll();
 
-					List<Food> food = adminRepository.findAll();
+				for (int j = 0; j < food.size(); j++) {
+					Integer foodPrice = 0;
+					List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i),
+							food.get(j).getFoodid());
 
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i),
-								food.get(j).getFoodid());
+					logger.info("inside getWeeklyFoodReport()  " + oder);
 
-						logger.info("inside getWeeklyFoodReport()  " + oder);
-
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
+					for (int k = 0; k < oder.size(); k++) {
+						foodPrice += oder.get(k).getTotalPrice();
 					}
-				}
-				if (i == 1) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
+					if (foodPrice != 0) {
+						FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
+						foodDetails.add(foodDetail);
+						priceList.add(foodPrice);
 					}
+
 				}
-				if(i==2) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
-
-					}
-				}
-				if(i==3) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
-
-					}
-				}
-				if(i==4) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
-
-					}
-				}
-				if(i==5) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
-
-					}
-				}
-				if(i==6) {
-					List<Food> food = adminRepository.findAll();
-					
-					for (int j = 0; j < food.size(); j++) {
-						Integer foodPrice = 0;
-						List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i), food.get(j).getFoodid());
-
-						logger.info("inside getWeeklyFoodReport()  "+oder);
-						
-						for (int k = 0; k < oder.size(); k++) {
-							foodPrice += oder.get(k).getTotalPrice();
-						}
-						if(foodPrice!=0) {
-							FoodDetailsDto foodDetail = new FoodDetailsDto(food.get(j).getFood_name(), foodPrice);
-							foodDetails.add(foodDetail);
-							priceList.add(foodPrice);
-						}
-					}
-				}
-
 			}
 
 			sales.setChart_data(priceList);
