@@ -31,5 +31,16 @@ public class FoodDetailsDto implements Serializable {
 		this.food = food;
 		this.totalPrice = totalPrice;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof FoodSaleReportDto) {
+			FoodDetailsDto foodDto =  (FoodDetailsDto)obj;
+			if(food!=null && this.food.equals(foodDto.getFood()) && this.totalPrice.equals(foodDto.getTotalPrice())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

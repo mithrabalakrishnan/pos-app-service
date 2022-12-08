@@ -839,6 +839,7 @@ public class AdminServiceImpl implements AdminService {
 		try {
 
 			List<FoodDetailsDto> foodDetails = new ArrayList<>();
+			
 
 			List<Integer> priceList = new ArrayList<Integer>();
 			List<String> foodList = new ArrayList<String>();
@@ -846,7 +847,7 @@ public class AdminServiceImpl implements AdminService {
 			for (int i = 0; i < dateList.size(); i++) {
 
 				List<Food> food = adminRepository.findAll();
-
+				
 				for (int j = 0; j < food.size(); j++) {
 					Integer foodPrice = 0;
 					List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i),
@@ -858,9 +859,12 @@ public class AdminServiceImpl implements AdminService {
 						foodPrice = foodPrice + oder.get(k).getTotalPrice();
 					}
 					if (foodPrice != 0) {
-						if(!foodList.contains(food.get(j).getFood_name())){
-							foodList.add(food.get(j).getFood_name());
+						if(!foodDetails.contains(new FoodDetailsDto(food.get(j).getFood_name(), foodPrice))) {
+							foodDetails.add(new FoodDetailsDto(food.get(j).getFood_name(), foodPrice));
 						}
+//						if(!foodList.contains(food.get(j).getFood_name())){
+//							foodList.add(food.get(j).getFood_name());
+//						}
 						priceList.add(foodPrice);
 					}
 
