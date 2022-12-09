@@ -9,6 +9,7 @@ import com.pos.app.dto.ReportDataDto;
 import com.pos.app.dto.WeeklyReportDto;
 import com.pos.app.model.Food;
 import com.pos.app.model.UserDTO;
+import com.pos.app.model.VoucherRequest;
 import com.pos.app.vo.StatusResponse;
 
 public interface AdminService {
@@ -32,4 +33,13 @@ public interface AdminService {
 	public List<Integer> getReportFoodItemWeekly(WeeklyReportDto reportData);
 	
 	public StatusResponse kichenUser(UserDTO user);
+	
+	
+	public StatusResponse addNewVoucher(VoucherRequest voucher);
+	
+	public StatusResponse deleteVoucher(Integer voucherId);
+	
+	public StatusResponse getVoucherDetails(Integer voucherId);
+	
+	public StatusResponse getAllVoucher();
 }

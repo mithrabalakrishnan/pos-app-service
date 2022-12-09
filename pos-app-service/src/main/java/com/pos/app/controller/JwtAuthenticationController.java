@@ -5,6 +5,8 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -21,9 +23,12 @@ import com.pos.app.service.JwtUserDetailsService;
 import com.pos.app.vo.StatusResponse;
 import com.pos.app.config.JwtTokenUtil;
 import com.pos.app.constants.AppConstants;
+import com.pos.app.dto.MessageResponse;
 import com.pos.app.model.JwtRequest;
 import com.pos.app.model.JwtResponse;
+import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
+import com.pos.app.repository.UserRepository;
 
 @RestController
 @CrossOrigin
@@ -35,6 +40,9 @@ public class JwtAuthenticationController {
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
@@ -45,7 +53,9 @@ public class JwtAuthenticationController {
 		
 		log.info("inside createAutheticationToken() method -------- JwtAuthenticationController");
 		
-		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		User user = userRepo.findByEmail(authenticationRequest.getUsername());
+		
+		authenticate(user.getUsername(), authenticationRequest.getPassword());
 		
 		log.info("user authenticated.. ");
 		
@@ -82,4 +92,10 @@ public class JwtAuthenticationController {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 	}
+/*	
+	public ResponseEntity<?> logOut(){
+		ResponseCookie cookie = jwtTokenUtil.getCleanJwtCookies();
+		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(new MessageResponse("You've been signed out"));
+	}
+	*/
 }

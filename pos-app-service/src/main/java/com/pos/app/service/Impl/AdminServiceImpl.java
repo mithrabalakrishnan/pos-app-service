@@ -24,10 +24,13 @@ import com.pos.app.model.FoodOrder;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
+import com.pos.app.model.Voucher;
+import com.pos.app.model.VoucherRequest;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.repository.UserRepository;
+import com.pos.app.repository.VoucherRepository;
 import com.pos.app.service.AdminService;
 import com.pos.app.vo.StatusResponse;
 
@@ -51,6 +54,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
+
+	@Autowired
+	private VoucherRepository voucherRepository;
 
 	@Override
 	public Food addMenu(FoodDTO food) throws BusinessException {
@@ -839,7 +845,6 @@ public class AdminServiceImpl implements AdminService {
 		try {
 
 			List<FoodDetailsDto> foodDetails = new ArrayList<>();
-			
 
 			List<Integer> priceList = new ArrayList<Integer>();
 			List<String> foodList = new ArrayList<String>();
@@ -847,7 +852,7 @@ public class AdminServiceImpl implements AdminService {
 			for (int i = 0; i < dateList.size(); i++) {
 
 				List<Food> food = adminRepository.findAll();
-				
+
 				for (int j = 0; j < food.size(); j++) {
 					Integer foodPrice = 0;
 					List<FoodOrder> oder = orderRepository.findByDateAndFoodid(dateList.get(i),
@@ -859,12 +864,15 @@ public class AdminServiceImpl implements AdminService {
 						foodPrice = foodPrice + oder.get(k).getTotalPrice();
 					}
 					if (foodPrice != 0) {
-						if(!foodDetails.contains(new FoodDetailsDto(food.get(j).getFood_name(), foodPrice))) {
-							foodDetails.add(new FoodDetailsDto(food.get(j).getFood_name(), foodPrice));
-						}
-//						if(!foodList.contains(food.get(j).getFood_name())){
-//							foodList.add(food.get(j).getFood_name());
-//						}
+						/*
+						 * if(!foodDetails.contains(new FoodDetailsDto(food.get(j).getFood_name(),
+						 * foodPrice))) { foodDetails.add(new FoodDetailsDto(food.get(j).getFood_name(),
+						 * foodPrice)); }
+						 * 
+						 * if(!foodList.contains(food.get(j).getFood_name())){
+						 * foodList.add(food.get(j).getFood_name()); }
+						 */
+						foodList.add(food.get(j).getFood_name());
 						priceList.add(foodPrice);
 					}
 
@@ -954,6 +962,96 @@ public class AdminServiceImpl implements AdminService {
 			logger.error("Error Message:" + e.getMessage());
 			throw new BusinessException(e.getMessage());
 		}
+		return response;
+	}
+
+	@Override
+	public StatusResponse addNewVoucher(VoucherRequest voucher) {
+
+		logger.info("inside addNewVoucher()------ AdminServiceImpl class");
+
+		StatusResponse response = new StatusResponse();
+
+		try {
+			Voucher newVoucher = new Voucher();
+			newVoucher.setVoucherTitle(voucher.getVoucherTitle());
+			newVoucher.setVoucherCode(voucher.getVoucherCode());
+			newVoucher.setDate(voucher.getDate());
+			newVoucher.setVoucherDiscount(voucher.getVoucherDiscount());
+
+			voucherRepository.save(newVoucher);
+			response.setData(newVoucher);
+			response.setMessage("New Voucher Added");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+
+			logger.info("inside addNewVoucher() after save()------ AdminServiceImpl class" + newVoucher);
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return response;
+	}
+
+	@Override
+	public StatusResponse deleteVoucher(Integer voucherId) {
+
+		logger.info("inside deleteVoucher() ------ AdminServiceImpl class");
+
+		StatusResponse response = new StatusResponse();
+
+		try {
+
+			voucherRepository.deleteByVoucherId(voucherId);
+			response.setData(true);
+			response.setMessage("Voucher Deleted");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+
+		return response;
+	}
+
+	@Override
+	public StatusResponse getAllVoucher() {
+		
+		StatusResponse response = new StatusResponse();
+		logger.info("inside getAllVoucher() ------ AdminServiceImpl class");
+		
+		try {
+			
+			List<Voucher> allVoucher = voucherRepository.findAll();
+			response.setData(allVoucher);
+			response.setMessage("All Voucher Voucher ");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+
+		return response;
+	}
+
+	@Override
+	public StatusResponse getVoucherDetails(Integer voucherId) {
+		StatusResponse response = new StatusResponse();
+		logger.info("inside getAllVoucher() ------ AdminServiceImpl class");
+		
+		try {
+			
+			Voucher Voucher = voucherRepository.findByVoucherId(voucherId);
+			response.setData(Voucher);
+			response.setMessage("Voucher Details");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+
 		return response;
 	}
 

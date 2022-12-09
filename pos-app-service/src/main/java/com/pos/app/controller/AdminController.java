@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import com.pos.app.dto.ReportDataDto;
 import com.pos.app.dto.WeeklyReportDto;
 import com.pos.app.model.Food;
 import com.pos.app.model.UserDTO;
+import com.pos.app.model.VoucherRequest;
 import com.pos.app.service.AdminService;
 import com.pos.app.vo.StatusResponse;
 
@@ -180,6 +182,25 @@ public class AdminController {
 	@PostMapping( "/kitchen-register")
 	public ResponseEntity<?> kitchenUser(@RequestBody UserDTO user) throws Exception {
 		return ResponseEntity.ok(adminService.kichenUser(user));
+	}
+	
+	
+	@DeleteMapping("/delete-voucher")
+	public ResponseEntity<?> deleteVoucher(@RequestParam Integer voucherId){
+		return ResponseEntity.ok(adminService.deleteVoucher(voucherId));
+		
+	}
+	
+	@GetMapping("/voucher-details")
+	public ResponseEntity<?> addNewVoucher(@RequestParam Integer voucherId){
+		return ResponseEntity.ok(adminService.getVoucherDetails(voucherId));
+		
+	}
+	
+	@GetMapping("/all-voucher")
+	public ResponseEntity<?> addNewVoucher(){
+		return ResponseEntity.ok(adminService.getAllVoucher());
+		
 	}
 	
 	
