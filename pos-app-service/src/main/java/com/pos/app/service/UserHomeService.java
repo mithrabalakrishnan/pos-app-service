@@ -9,7 +9,9 @@ import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.FoodOrderResponse;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
+import com.pos.app.model.UserDTO;
 import com.pos.app.vo.MenuDetails;
+import com.pos.app.vo.StatusResponse;
 
 public interface UserHomeService {
 
@@ -29,6 +31,8 @@ public interface UserHomeService {
 	public User getUserProfile();
 	
 	public Food getDetailFoodCategory(String category);
+
+	public StatusResponse updateProfile(UserDTO user);
 	
 	
 

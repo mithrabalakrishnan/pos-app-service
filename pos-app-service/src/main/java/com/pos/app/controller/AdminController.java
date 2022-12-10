@@ -204,6 +204,12 @@ public class AdminController {
 	}
 	
 	
+	@GetMapping("/user-monthly-report")
+	public ResponseEntity<?> getMonthlyUserReport(){
+		return ResponseEntity.ok(adminService.getMonthlyUserReport());
+	}
+	
+	
 	
 
 }

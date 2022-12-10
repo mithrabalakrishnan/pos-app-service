@@ -1016,12 +1016,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public StatusResponse getAllVoucher() {
-		
+
 		StatusResponse response = new StatusResponse();
 		logger.info("inside getAllVoucher() ------ AdminServiceImpl class");
-		
+
 		try {
-			
+
 			List<Voucher> allVoucher = voucherRepository.findAll();
 			response.setData(allVoucher);
 			response.setMessage("All Voucher Voucher ");
@@ -1039,13 +1039,34 @@ public class AdminServiceImpl implements AdminService {
 	public StatusResponse getVoucherDetails(Integer voucherId) {
 		StatusResponse response = new StatusResponse();
 		logger.info("inside getAllVoucher() ------ AdminServiceImpl class");
-		
+
 		try {
-			
+
 			Voucher Voucher = voucherRepository.findByVoucherId(voucherId);
 			response.setData(Voucher);
 			response.setMessage("Voucher Details");
 			response.setStatus(AppConstants.STATUS_SUCCESS);
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+
+		return response;
+	}
+
+	@Override
+	public StatusResponse getMonthlyUserReport() {
+		StatusResponse response = new StatusResponse();
+		logger.info("inside getMonthlyUserReport() ------ AdminServiceImpl class");
+
+		try {
+
+			List<User> user = userRepository.findAll();
+
+			for (int i = 0; i < 12; i++) {
+				
+			}
 
 		} catch (BusinessException e) {
 			logger.error("Error Message:" + e.getMessage());

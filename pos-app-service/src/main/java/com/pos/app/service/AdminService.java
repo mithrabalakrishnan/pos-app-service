@@ -13,33 +13,34 @@ import com.pos.app.model.VoucherRequest;
 import com.pos.app.vo.StatusResponse;
 
 public interface AdminService {
-	
+
 	public Food addMenu(FoodDTO food);
-	
+
 	public OrderDetailsDto getOrderList();
-	
+
 	public ReportDataDto getMonthlyReport();
-	
+
 	public FoodSaleReportDto getMonthlyFoodReport();
-	
+
 	public List<Food> getFoodAllDetails();
-	
+
 	public List<Integer> getReportFoodItemMonthly(Integer foodId);
-	
+
 	public ReportDataDto getWeeklyReport(List<String> dateList);
-	
+
 	public FoodSaleReportDto getWeeklyFoodReport(List<String> dateList);
-	
+
 	public List<Integer> getReportFoodItemWeekly(WeeklyReportDto reportData);
-	
+
 	public StatusResponse kichenUser(UserDTO user);
-	
-	
+
 	public StatusResponse addNewVoucher(VoucherRequest voucher);
-	
+
 	public StatusResponse deleteVoucher(Integer voucherId);
-	
+
 	public StatusResponse getVoucherDetails(Integer voucherId);
-	
+
 	public StatusResponse getAllVoucher();
+
+	public StatusResponse getMonthlyUserReport();
 }

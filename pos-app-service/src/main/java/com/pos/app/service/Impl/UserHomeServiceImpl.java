@@ -27,6 +27,7 @@ import com.pos.app.model.FoodOrderDTO;
 import com.pos.app.model.FoodOrderResponse;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
+import com.pos.app.model.UserDTO;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
@@ -34,6 +35,7 @@ import com.pos.app.repository.UserRepository;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.util.DateUtil;
 import com.pos.app.vo.MenuDetails;
+import com.pos.app.vo.StatusResponse;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
@@ -86,7 +88,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 					.getPrincipal();
 			String username = userDetails.getUsername();
 
-			TableDetail tableDetail = bookingRepository.findByTimeAndDate(tableDto.getTime(), tableDto.getDate());
+			TableDetail tableDetail = bookingRepository.findByTimeAndDateAndSeatLocation(tableDto.getTime(), tableDto.getDate(), tableDto.getSeatLocation());
 
 			if (tableDetail != null) {
 				logger.info("table already booked in UserHomeServiceImpl");
@@ -315,6 +317,37 @@ public class UserHomeServiceImpl implements UserHomeService {
 			}
 		}
 		return newList;
+	}
+	
+	@Override
+	public StatusResponse updateProfile(UserDTO user) {
+		logger.info("inside updateProfile() in UserHomeServiceImpl");
+		StatusResponse response = new StatusResponse();
+		try {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			String username = userDetails.getUsername();
+			User updateUser = new User();
+			updateUser = userRepository.findByUsername(username);
+			
+			updateUser.setEmail(user.getEmail());
+			updateUser.setFirstName(user.getFirstName());
+			updateUser.setLastName(user.getLastName());
+			updateUser.setPhone_no(user.getPhone());
+			updateUser.setUsername(user.getUsername());
+		
+			userRepository.save(updateUser);
+			
+			response.setData(updateUser);
+			response.setMessage("User Updated");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+			
+			
+		} catch (Exception e) {
+			logger.error("ERROR " + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return response;
 	}
 
 }
