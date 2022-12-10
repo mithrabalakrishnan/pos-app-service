@@ -60,7 +60,7 @@ public class JwtAuthenticationController {
 		log.info("user authenticated.. ");
 		
 		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+				.loadUserByUsername(user.getUsername());
 	
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
