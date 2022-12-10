@@ -69,7 +69,7 @@ public class JwtAuthenticationController {
 		StatusResponse response = new StatusResponse();
 		response.setStatus(AppConstants.STATUS_SUCCESS);
 		response.setMessage("Login Success");
-		response.setData(new JwtResponse(token));
+		response.setData(new JwtResponse(token,user.getRole()));
 		
 		return ResponseEntity.ok(response);
 	}

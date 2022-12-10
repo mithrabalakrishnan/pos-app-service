@@ -24,6 +24,7 @@ import com.pos.app.model.FoodOrder;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
+import com.pos.app.model.UserReport;
 import com.pos.app.model.Voucher;
 import com.pos.app.model.VoucherRequest;
 import com.pos.app.repository.AdminRepository;
@@ -1062,11 +1063,77 @@ public class AdminServiceImpl implements AdminService {
 
 		try {
 
-			List<User> user = userRepository.findAll();
+			List<User> allUser = userRepository.findAll();
+			List<UserReport> userReport = new ArrayList<UserReport>();
+			for (int j = 0; j < allUser.size(); j++) {
+				List<FoodOrder> foodOrder = new ArrayList<>();
+				List<Integer> visitList = new ArrayList<Integer>();
+				User user = new User();
+				for (int i = 0; i < 12; i++) {
 
-			for (int i = 0; i < 12; i++) {
+					if (i == 0) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "JANUARY");
+						visitList.add(foodOrder.size());
+					}
+
+					if (i == 1) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "FEBRUARY");
+						visitList.add(foodOrder.size());
+					}
+
+					if (i == 2) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "MARCH");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 3) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "APRIL");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 4) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "MAY");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 5) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "JUNE");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 6) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "JULY");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 7) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "AUGUST");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 8) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "SEPTEMBER");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 9) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "OCTOBER");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 10) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "NOVEMBER");
+						visitList.add(foodOrder.size());
+					}
+					if (i == 11) {
+						foodOrder = orderRepository.findByUseridAndMonth(user.getUserid(), "DECEMBER");
+						visitList.add(foodOrder.size());
+					}
+				}
+				UserReport userRep = new UserReport();
+				userRep.setUsername(user.getUsername());
+				userRep.setVisitList(visitList);
 				
+				userReport.add(userRep);
+
 			}
+			
+			response.setData(userReport);
+			response.setMessage("User Report");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+			
 
 		} catch (BusinessException e) {
 			logger.error("Error Message:" + e.getMessage());
