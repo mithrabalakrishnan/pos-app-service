@@ -26,7 +26,9 @@ public interface AdminRepository extends JpaRepository<Food, Integer>{
 	
 	
 	
-	public Food findByCategory(String category);
+	public List<Food> findByCategory(String category);
+	
+
 	
 	
 

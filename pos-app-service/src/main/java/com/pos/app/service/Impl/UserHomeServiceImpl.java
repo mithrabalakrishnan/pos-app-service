@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.ls.LSInput;
 
 import com.pos.app.constants.AppConstants;
 import com.pos.app.dto.FoodCategory;
@@ -234,7 +235,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 		try {
 
-			food = adminRepository.findByCategory(category);
+		//	food = adminRepository.findByCategory(category);
 			
 			
 
@@ -294,10 +295,10 @@ public class UserHomeServiceImpl implements UserHomeService {
 	}
 	
 	@Override
-	public Food getDetailFoodCategory(String category) {
+	public List<Food> getDetailsFoodCategory(String category) {
 		logger.info("inside getDetailFoodCategory() in UserHomeServiceImpl");
 		
-		Food food = new Food();
+		List<Food> food = new ArrayList<>();
 		try {
 			food = adminRepository.findByCategory(category);
 			
@@ -349,5 +350,13 @@ public class UserHomeServiceImpl implements UserHomeService {
 		}
 		return response;
 	}
+
+	@Override
+	public Food getDetailFoodCategory(String category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

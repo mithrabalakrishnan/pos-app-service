@@ -1125,15 +1125,50 @@ public class AdminServiceImpl implements AdminService {
 				UserReport userRep = new UserReport();
 				userRep.setUsername(user.getUsername());
 				userRep.setVisitList(visitList);
-				
+
 				userReport.add(userRep);
 
 			}
-			
+
 			response.setData(userReport);
 			response.setMessage("User Report");
 			response.setStatus(AppConstants.STATUS_SUCCESS);
-			
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+
+		return response;
+	}
+
+	@Override
+	public StatusResponse getCustomerReport(String month) {
+		StatusResponse response = new StatusResponse();
+		logger.info("inside getCustomerReport() ------ AdminServiceImpl class");
+
+		try {
+
+			List<User> userAll = userRepository.findAll();
+			List<UserReport> userReport = new ArrayList<UserReport>();
+
+			for (int j = 0; j < userAll.size(); j++) {
+				List<FoodOrder> foodOrder = new ArrayList<>();
+				List<Integer> visitList = new ArrayList<Integer>();
+
+				foodOrder = orderRepository.findByUseridAndMonth(userAll.get(j).getUserid(), month);
+				visitList.add(foodOrder.size());
+				UserReport userRep = new UserReport();
+				userRep.setUsername(userAll.get(j).getUsername());
+				userRep.setVisitList(visitList);
+
+				userReport.add(userRep);
+				
+			}
+
+			response.setData(userReport);
+			response.setMessage("User Report");
+			response.setStatus(AppConstants.STATUS_SUCCESS);
 
 		} catch (BusinessException e) {
 			logger.error("Error Message:" + e.getMessage());

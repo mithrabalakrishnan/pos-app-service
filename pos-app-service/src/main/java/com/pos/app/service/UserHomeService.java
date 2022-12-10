@@ -1,5 +1,7 @@
 package com.pos.app.service;
 
+import java.util.List;
+
 import com.pos.app.dto.FoodCategory;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.TableDTO;
@@ -32,6 +34,9 @@ public interface UserHomeService {
 	
 	public Food getDetailFoodCategory(String category);
 
+	
+	public List<Food> getDetailsFoodCategory(String category);
+	
 	public StatusResponse updateProfile(UserDTO user);
 	
 	

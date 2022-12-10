@@ -43,4 +43,6 @@ public interface AdminService {
 	public StatusResponse getAllVoucher();
 
 	public StatusResponse getMonthlyUserReport();
+	
+	public StatusResponse getCustomerReport(String month);
 }

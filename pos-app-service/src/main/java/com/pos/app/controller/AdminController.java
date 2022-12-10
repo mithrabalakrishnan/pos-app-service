@@ -209,6 +209,11 @@ public class AdminController {
 		return ResponseEntity.ok(adminService.getMonthlyUserReport());
 	}
 	
+	@GetMapping("/customer-month-report")
+	public ResponseEntity<?> getCustomerReport(@RequestParam String month){
+		return ResponseEntity.ok(adminService.getCustomerReport(month));
+	}
+	
 	
 	
 
