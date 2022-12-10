@@ -1,5 +1,7 @@
 package com.pos.app.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,7 +114,7 @@ public class UserHomeController {
 		
 		logger.info("inside getCategoryDetails() in UserHomeController ");
 		
-		Food food = userHomeService.getDetailFoodCategory(category);
+		List<Food> food = userHomeService.getDetailsFoodCategory(category);
 		
 		StatusResponse response = new StatusResponse();
 		response.setData(food);
@@ -137,7 +139,7 @@ public class UserHomeController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PutMapping("update-profile")
+	@PutMapping("/update-profile")
 	public ResponseEntity<?> updateProfile(@RequestBody UserDTO user){
 		return ResponseEntity.ok(userHomeService.updateProfile(user));
 	}

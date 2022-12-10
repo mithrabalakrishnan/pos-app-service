@@ -214,7 +214,11 @@ public class AdminController {
 		return ResponseEntity.ok(adminService.getCustomerReport(month));
 	}
 	
-	
+	@PostMapping("/add-voucher")
+	public ResponseEntity<?> addVoucher(@RequestBody VoucherRequest voucher){
+		return ResponseEntity.ok(adminService.addNewVoucher(voucher));
+		
+	}
 	
 
 }

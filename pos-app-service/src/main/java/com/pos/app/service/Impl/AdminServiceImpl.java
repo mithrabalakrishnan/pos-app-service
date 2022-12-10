@@ -1,7 +1,9 @@
 package com.pos.app.service.Impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1149,7 +1151,7 @@ public class AdminServiceImpl implements AdminService {
 
 		try {
 
-			List<User> userAll = userRepository.findAll();
+			List<User> userAll = userRepository.findByRole(AppConstants.ROLE_USER);
 			List<UserReport> userReport = new ArrayList<UserReport>();
 
 			for (int j = 0; j < userAll.size(); j++) {
@@ -1157,6 +1159,8 @@ public class AdminServiceImpl implements AdminService {
 				List<Integer> visitList = new ArrayList<Integer>();
 
 				foodOrder = orderRepository.findByUseridAndMonth(userAll.get(j).getUserid(), month);
+				
+				
 				visitList.add(foodOrder.size());
 				UserReport userRep = new UserReport();
 				userRep.setUsername(userAll.get(j).getUsername());

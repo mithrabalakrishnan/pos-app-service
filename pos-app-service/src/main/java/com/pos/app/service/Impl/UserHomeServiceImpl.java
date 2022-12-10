@@ -335,7 +335,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 			updateUser.setFirstName(user.getFirstName());
 			updateUser.setLastName(user.getLastName());
 			updateUser.setPhone_no(user.getPhone());
-			updateUser.setUsername(user.getUsername());
+			//updateUser.setUsername(user.getUsername());
 		
 			userRepository.save(updateUser);
 			
