@@ -29,10 +29,12 @@ import com.pos.app.model.FoodOrderResponse;
 import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
+import com.pos.app.model.Visit;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.repository.UserRepository;
+import com.pos.app.repository.UserVisitRepository;
 import com.pos.app.service.UserHomeService;
 import com.pos.app.util.DateUtil;
 import com.pos.app.vo.MenuDetails;
@@ -55,6 +57,9 @@ public class UserHomeServiceImpl implements UserHomeService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserVisitRepository userVisitRepository;
 
 	@Override
 	public MenuDetails getMenuDetails() throws BusinessException {
@@ -146,6 +151,18 @@ public class UserHomeServiceImpl implements UserHomeService {
 				order.setStatus("To Do");
 				orderRepository.save(order);
 			}
+			
+			
+			Visit visit = new Visit();
+			visit.setDate(oderDto.getDate());
+			visit.setMonth(DateUtil.getMonth(oderDto.getDate()));
+			visit.setUserid(user.getUserid());
+			
+			
+			logger.info("inside foodOder() before visit save() UserHomeServiceImpl "+visit);
+			
+			userVisitRepository.save(visit);
+			
 			
 			List<String> phone = new ArrayList<>();
 			List<User> kichecUser = userRepository.findByRole(AppConstants.ROLE_KITCHEN);

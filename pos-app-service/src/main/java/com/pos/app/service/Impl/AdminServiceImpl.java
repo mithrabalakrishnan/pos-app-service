@@ -27,12 +27,14 @@ import com.pos.app.model.TableDetail;
 import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
 import com.pos.app.model.UserReport;
+import com.pos.app.model.Visit;
 import com.pos.app.model.Voucher;
 import com.pos.app.model.VoucherRequest;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserBookingRepository;
 import com.pos.app.repository.UserRepository;
+import com.pos.app.repository.UserVisitRepository;
 import com.pos.app.repository.VoucherRepository;
 import com.pos.app.service.AdminService;
 import com.pos.app.vo.StatusResponse;
@@ -60,6 +62,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private VoucherRepository voucherRepository;
+	
+	@Autowired
+	private UserVisitRepository visitRepository;
 
 	@Override
 	public Food addMenu(FoodDTO food) throws BusinessException {
@@ -1155,13 +1160,13 @@ public class AdminServiceImpl implements AdminService {
 			List<UserReport> userReport = new ArrayList<UserReport>();
 
 			for (int j = 0; j < userAll.size(); j++) {
-				List<FoodOrder> foodOrder = new ArrayList<>();
+				List<Visit> visit = new ArrayList<>();
 				List<Integer> visitList = new ArrayList<Integer>();
 
-				foodOrder = orderRepository.findByUseridAndMonth(userAll.get(j).getUserid(), month);
+				visit = visitRepository.findByUseridAndMonth(userAll.get(j).getUserid(), month);
 				
 				
-				visitList.add(foodOrder.size());
+				visitList.add(visit.size());
 				UserReport userRep = new UserReport();
 				userRep.setUsername(userAll.get(j).getUsername());
 				userRep.setVisitList(visitList);
