@@ -114,6 +114,15 @@ CREATE TABLE `user` (
   `role` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+CREATE TABLE `visit` (
+  `visitid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `month` varchar(30) DEFAULT NULL,
+  `date` varchar(30) DEFAULT NULL,
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
 --
 -- Dumping data for table `user`
 --
@@ -155,6 +164,11 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`userid`),
   ADD UNIQUE KEY `username` (`username`);
 
+
+  ALTER TABLE `visit`
+  ADD PRIMARY KEY (`visitid`),
+  ADD KEY `FK_UseUser_Id` (`userid`)
+
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -179,6 +193,13 @@ ALTER TABLE `table_detail`
 --
 ALTER TABLE `user`
   MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+  --
+-- AUTO_INCREMENT for table `visit`
+--
+ALTER TABLE `visit`
+  MODIFY `visit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Constraints for dumped tables
 --
