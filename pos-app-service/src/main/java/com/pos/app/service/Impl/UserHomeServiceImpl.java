@@ -283,6 +283,7 @@ public class UserHomeServiceImpl implements UserHomeService {
 			foodUpdate.setQuanty(foodOrder.get(i).getQuanty());
 			foodUpdate.setStatus(foodOrder.get(i).getStatus());
 			foodUpdate.setTableId(foodOrder.get(i).getTableid());
+			foodUpdate.setTotalPrice(foodOrder.get(i).getTotalPrice());
 
 			foodOrderList.add(foodUpdate);
 
