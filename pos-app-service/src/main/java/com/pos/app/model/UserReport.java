@@ -9,7 +9,9 @@ public class UserReport implements Serializable {
 
 	private String username;
 
-	private List<Integer> visitList;
+	private Integer visitList;
+	
+	private Integer totalUser;
 
 	public UserReport() {
 		// TODO Auto-generated constructor stub
@@ -23,18 +25,27 @@ public class UserReport implements Serializable {
 		this.username = username;
 	}
 
-	public List<Integer> getVisitList() {
+	public Integer getVisitList() {
 		return visitList;
 	}
 
-	public void setVisitList(List<Integer> visitList) {
+	public void setVisitList(Integer visitList) {
 		this.visitList = visitList;
 	}
 
-	public UserReport(String username, List<Integer> visitList) {
+	public UserReport(String username, Integer visitList) {
 		super();
 		this.username = username;
 		this.visitList = visitList;
 	}
 
+	public Integer getTotalUser() {
+		return totalUser;
+	}
+
+	public void setTotalUser(Integer totalUser) {
+		this.totalUser = totalUser;
+	}
+	
+	
 }

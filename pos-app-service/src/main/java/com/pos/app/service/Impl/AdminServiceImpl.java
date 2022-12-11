@@ -19,6 +19,7 @@ import com.pos.app.dto.FoodDetailsDto;
 import com.pos.app.dto.FoodSaleReportDto;
 import com.pos.app.dto.OrderDetailsDto;
 import com.pos.app.dto.ReportDataDto;
+import com.pos.app.dto.UserReportResponse;
 import com.pos.app.dto.WeeklyReportDto;
 import com.pos.app.exception.BusinessException;
 import com.pos.app.model.Food;
@@ -1131,7 +1132,7 @@ public class AdminServiceImpl implements AdminService {
 				}
 				UserReport userRep = new UserReport();
 				userRep.setUsername(user.getUsername());
-				userRep.setVisitList(visitList);
+				// userRep.setVisitList(visitList);
 
 				userReport.add(userRep);
 
@@ -1158,24 +1159,27 @@ public class AdminServiceImpl implements AdminService {
 
 			List<User> userAll = userRepository.findByRole(AppConstants.ROLE_USER);
 			List<UserReport> userReport = new ArrayList<UserReport>();
-
+			UserReportResponse resp = new UserReportResponse();
+			resp.setTotalUser(userAll.size());
 			for (int j = 0; j < userAll.size(); j++) {
 				List<Visit> visit = new ArrayList<>();
-				List<Integer> visitList = new ArrayList<Integer>();
+				// List<Integer> visitList = new ArrayList<Integer>();
 
 				visit = visitRepository.findByUseridAndMonth(userAll.get(j).getUserid(), month);
 				
 				
-				visitList.add(visit.size());
+				// visitList.add(visit.size());
 				UserReport userRep = new UserReport();
 				userRep.setUsername(userAll.get(j).getUsername());
-				userRep.setVisitList(visitList);
-
+				userRep.setVisitList(visit.size());
+				
 				userReport.add(userRep);
 				
 			}
-
-			response.setData(userReport);
+			
+			resp.setUserReport(userReport);
+			
+			response.setData(resp);
 			response.setMessage("User Report");
 			response.setStatus(AppConstants.STATUS_SUCCESS);
 
