@@ -32,6 +32,9 @@ public class Food {
 	@Column
 	private String status;
 	
+	@Column
+	private String incrediance;
+	
 	
 	
 	public Food() {
@@ -43,7 +46,7 @@ public class Food {
 
 
 	public Food(Integer foodid, String food_name, String category, String rating, String price, String image,
-			String status) {
+			String status, String incrediance) {
 		super();
 		this.foodid = foodid;
 		this.food_name = food_name;
@@ -52,6 +55,7 @@ public class Food {
 		this.price = price;
 		this.image = image;
 		this.status = status;
+		this.incrediance = incrediance;
 	}
 
 
@@ -151,6 +155,24 @@ public class Food {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+
+
+
+
+	public String getIncrediance() {
+		return incrediance;
+	}
+
+
+
+
+
+	public void setIncrediance(String incrediance) {
+		this.incrediance = incrediance;
+	}
+	
+	
 	
 	
 }

@@ -185,6 +185,12 @@ public class AdminController {
 	}
 	
 	
+	@PostMapping( "/waiter-register")
+	public ResponseEntity<?> waiterUser(@RequestBody UserDTO user) throws Exception {
+		return ResponseEntity.ok(adminService.kichenUser(user));
+	}
+	
+	
 	@DeleteMapping("/delete-voucher")
 	public ResponseEntity<?> deleteVoucher(@RequestParam Integer voucherId){
 		return ResponseEntity.ok(adminService.deleteVoucher(voucherId));

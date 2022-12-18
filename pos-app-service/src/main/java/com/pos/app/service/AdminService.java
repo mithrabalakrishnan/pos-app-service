@@ -33,6 +33,8 @@ public interface AdminService {
 	public List<Integer> getReportFoodItemWeekly(WeeklyReportDto reportData);
 
 	public StatusResponse kichenUser(UserDTO user);
+	
+	public StatusResponse waiterUser(UserDTO user);
 
 	public StatusResponse addNewVoucher(VoucherRequest voucher);
 

@@ -2,30 +2,27 @@ package com.pos.app.service.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pos.app.dto.FoodUpdate;
 import com.pos.app.dto.FoodUpdateOrderDTO;
 import com.pos.app.exception.BusinessException;
-import com.pos.app.mapper.FoodOrderMapper;
 import com.pos.app.model.Food;
 import com.pos.app.model.FoodOrder;
 import com.pos.app.model.User;
 import com.pos.app.repository.AdminRepository;
 import com.pos.app.repository.FoodOrderRepository;
 import com.pos.app.repository.UserRepository;
-import com.pos.app.service.KitchenService;
+import com.pos.app.service.WaiterService;
 
 @Service
-public class KitchenServiceImpl implements KitchenService {
-
-	Logger logger = LoggerFactory.getLogger(KitchenServiceImpl.class);
-
+public class WaiterServiceImpl implements WaiterService{
+	
+	Logger logger = LoggerFactory.getLogger(WaiterServiceImpl.class);
+	
 	@Autowired
 	private FoodOrderRepository orderRepository;
 	
@@ -35,12 +32,9 @@ public class KitchenServiceImpl implements KitchenService {
 	@Autowired
 	private AdminRepository adminRepository;
 	
-//	@Autowired
-//	private FoodOrderMapper foodMapper;
-
 	@Override
-	public List<FoodUpdateOrderDTO> getOrderList() {
-		logger.info("inside getOrderList()  in KitchenServiceImpl");
+	public List<FoodUpdateOrderDTO> getCompletedOrderList() {
+		logger.info("inside getCompletedOrderList()  in WaiterServiceImpl");
 
 		List<FoodOrder> foodOrder = new ArrayList<>();
 		
@@ -48,7 +42,7 @@ public class KitchenServiceImpl implements KitchenService {
 		
 		try {
 
-			foodOrder = orderRepository.findAll();
+			foodOrder = orderRepository.findByStatus("Completed");
 			
 			for(int i=0;i<foodOrder.size();i++) {
 				
@@ -80,30 +74,6 @@ public class KitchenServiceImpl implements KitchenService {
 			throw new BusinessException(e.getMessage());
 		}
 		return foodOrderList;
-
-	}
-
-	@Override
-	public FoodOrder updateOrderList(FoodUpdate update) {
-		
-		logger.info("inside getOrderList()  in KitchenServiceImpl");
-		
-		FoodOrder order = new FoodOrder();
-		
-		try {
-			
-			order = orderRepository.findByOrderidAndUserid(update.getOrderId(),update.getUserId());
-			
-			order.setStatus(update.getStatus());
-			
-			orderRepository.save(order);
-			
-			
-		}catch (BusinessException e) {
-			logger.error("ERROR:" + e.getMessage());
-			throw new BusinessException(e.getMessage());
-		}
-		return order;
 	}
 
 }

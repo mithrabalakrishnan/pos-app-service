@@ -36,6 +36,8 @@ public class FoodUpdateOrderDTO implements Serializable{
 	
 	private String userPhoneNumber;
 	
+	private String incrediance;
+	
 	public FoodUpdateOrderDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -44,7 +46,7 @@ public class FoodUpdateOrderDTO implements Serializable{
 
 	public FoodUpdateOrderDTO(Integer id, Integer userId, Integer foodId, Integer quanty, Integer tableId, Integer totalPrice,
 			String date, String time, Integer day, String month, Integer year, String foodName, String username,
-			String status,String userPhoneNumber) {
+			String status,String userPhoneNumber, String incrediance) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -61,6 +63,7 @@ public class FoodUpdateOrderDTO implements Serializable{
 		this.username = username;
 		this.status = status;
 		this.userPhoneNumber= userPhoneNumber;
+		this.incrediance = incrediance;
 	}
 
 
@@ -187,6 +190,18 @@ public class FoodUpdateOrderDTO implements Serializable{
 
 	public void setUserPhoneNumber(String userPhoneNumber) {
 		this.userPhoneNumber = userPhoneNumber;
+	}
+
+
+
+	public String getIncrediance() {
+		return incrediance;
+	}
+
+
+
+	public void setIncrediance(String incrediance) {
+		this.incrediance = incrediance;
 	}
 	
 	

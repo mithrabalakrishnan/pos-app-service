@@ -87,6 +87,7 @@ public class AdminServiceImpl implements AdminService {
 			newMenu.setRating(food.getRating());
 			newMenu.setStatus(food.getStatus());
 			newMenu.setImage(food.getImage());
+			newMenu.setIncrediance(food.getIncrediance());
 
 			logger.info("before save() check --- AdminServiceImp");
 			newMenu = adminRepository.save(newMenu);
@@ -1188,6 +1189,48 @@ public class AdminServiceImpl implements AdminService {
 			throw new BusinessException(e.getMessage());
 		}
 
+		return response;
+	}
+	
+	
+	@Override
+	public StatusResponse waiterUser(UserDTO user) {
+		StatusResponse response = new StatusResponse();
+		User newUser = new User();
+
+		try {
+			logger.info("inside waiterUser()------ AdminServiceImpl class");
+
+			newUser.setUsername(user.getUsername());
+			newUser.setFirstName(user.getFirstName());
+			newUser.setLastName(user.getLastName());
+			newUser.setPhone_no(user.getPhone());
+			newUser.setEmail(user.getEmail());
+			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+			newUser.setRole(AppConstants.ROLE_WAITER);
+
+			if (userRepository.findByEmail(newUser.getEmail()) != null) {
+				logger.info("Email already registered");
+				throw new BusinessException("Email already registered");
+//			}else if(userRepository.findByPhone(newUser.getPhone_no())!=null) {
+//				log.info("Phone already registered");
+//				throw new BusinessException("Phone already registered");
+			} else if (userRepository.findByUsername(newUser.getUsername()) != null) {
+				logger.info("username already found");
+				throw new BusinessException("username already found");
+			}
+
+			newUser = userRepository.save(newUser);
+//			int result = userMapper.createUser(newUser);
+
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+			response.setMessage("Waiter User Registration Successfull");
+			response.setData(newUser);
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
 		return response;
 	}
 

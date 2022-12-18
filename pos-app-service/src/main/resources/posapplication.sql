@@ -34,7 +34,8 @@ CREATE TABLE `food` (
   `rating` varchar(30) DEFAULT NULL,
   `price` varchar(15) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `status` varchar(30) DEFAULT NULL
+  `status` varchar(30) DEFAULT NULL,
+  `incrediance` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
