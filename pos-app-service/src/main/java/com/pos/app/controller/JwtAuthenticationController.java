@@ -52,9 +52,13 @@ public class JwtAuthenticationController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		
 		log.info("inside createAutheticationToken() method -------- JwtAuthenticationController");
-		
-		User user = userRepo.findByEmail(authenticationRequest.getUsername());
-		
+		User user = new User();
+		try {
+			user = userRepo.findByEmail(authenticationRequest.getUsername());
+		}catch (Exception e) {
+			log.error("ERROR :"+ e.getMessage());
+			throw new Exception("INVALID_CREDENTIALS", e);
+		}
 		authenticate(user.getUsername(), authenticationRequest.getPassword());
 		
 		log.info("user authenticated.. ");

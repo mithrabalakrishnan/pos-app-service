@@ -1,10 +1,18 @@
 package com.pos.app.service.Impl;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +26,7 @@ import com.pos.app.dto.FoodDTO;
 import com.pos.app.dto.FoodDetailsDto;
 import com.pos.app.dto.FoodSaleReportDto;
 import com.pos.app.dto.OrderDetailsDto;
+import com.pos.app.dto.PredicationDto;
 import com.pos.app.dto.ReportDataDto;
 import com.pos.app.dto.UserReportResponse;
 import com.pos.app.dto.WeeklyReportDto;
@@ -63,7 +72,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private VoucherRepository voucherRepository;
-	
+
 	@Autowired
 	private UserVisitRepository visitRepository;
 
@@ -1167,19 +1176,18 @@ public class AdminServiceImpl implements AdminService {
 				// List<Integer> visitList = new ArrayList<Integer>();
 
 				visit = visitRepository.findByUseridAndMonth(userAll.get(j).getUserid(), month);
-				
-				
+
 				// visitList.add(visit.size());
 				UserReport userRep = new UserReport();
 				userRep.setUsername(userAll.get(j).getUsername());
 				userRep.setVisitList(visit.size());
-				
+
 				userReport.add(userRep);
-				
+
 			}
-			
+
 			resp.setUserReport(userReport);
-			
+
 			response.setData(resp);
 			response.setMessage("User Report");
 			response.setStatus(AppConstants.STATUS_SUCCESS);
@@ -1191,8 +1199,7 @@ public class AdminServiceImpl implements AdminService {
 
 		return response;
 	}
-	
-	
+
 	@Override
 	public StatusResponse waiterUser(UserDTO user) {
 		StatusResponse response = new StatusResponse();
@@ -1232,6 +1239,88 @@ public class AdminServiceImpl implements AdminService {
 			throw new BusinessException(e.getMessage());
 		}
 		return response;
+	}
+
+	@Override
+	public StatusResponse generatedReport() {
+		StatusResponse response = new StatusResponse();
+		logger.info("inside generatedReport()------ AdminServiceImpl class");
+
+		try {
+			// Open the file
+			BufferedReader reader = new BufferedReader(new FileReader("./resources/train.csv"));
+
+			// Create a CSVFormat object with the desired format
+			CSVFormat format = CSVFormat.DEFAULT.withHeader();
+
+			// Iterate over the records of the CSV file
+			Iterable<CSVRecord> records = format.parse(reader);
+			Map<String, String> data = new LinkedHashMap<>();
+			for (CSVRecord record : records) {
+				// Add the values of the record to the map
+				data.put(record.get("Id"), record.get("revenue"));
+			}
+
+			// Close the reader
+			reader.close();
+
+			
+			
+			// Open the file
+			BufferedReader submission = new BufferedReader(new FileReader("./resources/output/submission.csv"));
+
+			// Create a CSVFormat object with the desired format
+			CSVFormat formatCsv = CSVFormat.DEFAULT.withHeader();
+
+			// Iterate over the records of the CSV file
+			Iterable<CSVRecord> records1 = formatCsv.parse(submission);
+			Map<String, String> dataPredicated = new LinkedHashMap<>();
+			for (CSVRecord record : records1) {
+				// Add the values of the record to the map
+				dataPredicated.put(record.get("Id"), record.get("Prediction"));
+			}
+
+			// Close the reader
+			submission.close();
+			
+			PredicationDto predication =new PredicationDto(dataPredicated, data);
+			
+			response.setData(predication);
+			response.setMessage("Predicated data");
+			response.setStatus(true);
+			
+
+		} catch (BusinessException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		} catch (FileNotFoundException e) {
+			logger.error("Error Message:" + e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.error("Error Message:" + e.getMessage());
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public StatusResponse generateForcating() {
+		logger.info("inside generateForcating()------ AdminServiceImpl class");
+		StatusResponse response = new StatusResponse();
+
+		try {
+			
+			ProcessBuilder pb = new ProcessBuilder("py", "./resources/main.py");
+            pb.inheritIO();
+            Process process = pb.start();
+            process.waitFor();
+
+		} catch (BusinessException | IOException | InterruptedException e) {
+			logger.error("Error Message:" + e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return response;
+
 	}
 
 }

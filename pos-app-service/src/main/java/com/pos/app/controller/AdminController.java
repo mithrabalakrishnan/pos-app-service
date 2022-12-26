@@ -226,5 +226,23 @@ public class AdminController {
 		
 	}
 	
+	
+	/*
+	 * 
+	 * This end-point not working properly because generateForcating() method internaly calling python file
+	 * 
+	 * 
+	 */
+	
+	@GetMapping("/generate-forcating")
+	public ResponseEntity<?> generateForcating(){
+		return ResponseEntity.ok(adminService.generateForcating());
+	}
+	
+	@GetMapping("/generated-forcating")
+	public ResponseEntity<?> generatedForcating(){
+		return ResponseEntity.ok(adminService.generatedReport());
+	}
+	
 
 }

@@ -47,4 +47,8 @@ public interface AdminService {
 	public StatusResponse getMonthlyUserReport();
 	
 	public StatusResponse getCustomerReport(String month);
+	
+	public StatusResponse generateForcating();
+	
+	public StatusResponse generatedReport();
 }
