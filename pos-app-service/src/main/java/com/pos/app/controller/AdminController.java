@@ -187,7 +187,7 @@ public class AdminController {
 	
 	@PostMapping( "/waiter-register")
 	public ResponseEntity<?> waiterUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(adminService.kichenUser(user));
+		return ResponseEntity.ok(adminService.waiterUser(user));
 	}
 	
 	
@@ -229,7 +229,7 @@ public class AdminController {
 	
 	/*
 	 * 
-	 * This end-point not working properly because generateForcating() method internaly calling python file
+	 * generateForcating() method internally calling python file
 	 * 
 	 * 
 	 */

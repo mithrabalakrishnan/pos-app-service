@@ -1249,21 +1249,20 @@ public class AdminServiceImpl implements AdminService {
 
 		try {
 			
-			List<ForcastingVo> revanue = new ArrayList<>();
+			List<ForcastingVo> revenue = new ArrayList<>();
 			
 			// Open the file
-			BufferedReader reader = new BufferedReader(new FileReader("./resources/train.csv"));
+			BufferedReader reader = new BufferedReader(new FileReader("train.csv"));
 
 			// Create a CSVFormat object with the desired format
 			CSVFormat format = CSVFormat.DEFAULT.withHeader();
 
 			// Iterate over the records of the CSV file
 			Iterable<CSVRecord> records = format.parse(reader);
-			Map<String, String> data = new LinkedHashMap<>();
 			for (CSVRecord record : records) {
 				// Add the values of the record to the List
 				//data.put(record.get("Id"), record.get("revenue"));
-				revanue.add(new ForcastingVo(record.get("Id"), record.get("revenue")));
+				revenue.add(new ForcastingVo(record.get("Id"), record.get("revenue")));
 			}
 
 			// Close the reader
@@ -1272,7 +1271,7 @@ public class AdminServiceImpl implements AdminService {
 			
 			
 			// Open the file
-			BufferedReader submission = new BufferedReader(new FileReader("./resources/output/submission.csv"));
+			BufferedReader submission = new BufferedReader(new FileReader("./output/submission.csv"));
 
 			List<ForcastingVo> prediction = new ArrayList<>();
 			
@@ -1281,7 +1280,6 @@ public class AdminServiceImpl implements AdminService {
 
 			// Iterate over the records of the CSV file
 			Iterable<CSVRecord> records1 = formatCsv.parse(submission);
-			Map<String, String> dataPredicated = new LinkedHashMap<>();
 			for (CSVRecord record : records1) {
 				// Add the values of the record to the list
 				//dataPredicated.put(record.get("Id"), record.get("Prediction"));
@@ -1291,7 +1289,7 @@ public class AdminServiceImpl implements AdminService {
 			// Close the reader
 			submission.close();
 			
-			PredicationDto forcasting = new PredicationDto(prediction, revanue);
+			PredicationDto forcasting = new PredicationDto(prediction, revenue);
 			
 			response.setData(forcasting);
 			response.setMessage("Predicated data");
@@ -1318,7 +1316,7 @@ public class AdminServiceImpl implements AdminService {
 
 		try {
 			
-			ProcessBuilder pb = new ProcessBuilder("py", "./resources/main.py");
+			ProcessBuilder pb = new ProcessBuilder("python3", "D:/files/main.py");
             pb.inheritIO();
             Process process = pb.start();
             process.waitFor();
