@@ -3,8 +3,8 @@ import datetime
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
 
-df_train = pd.read_csv('./resources/train.csv','r')
-df_test = pd.read_csv('./resources/test.csv','r')
+df_train = pd.read_csv('train.csv')
+df_test = pd.read_csv('test.csv')
 
 revenue = df_train["revenue"]
 del df_train["revenue"]
@@ -36,4 +36,4 @@ rf.fit(df_train[df_train_columns], revenue)
 prediction = rf.predict(df_test[df_train_columns])
 
 submission = pd.DataFrame({"Id":df_test.Id, "Prediction":prediction})
-submission.to_csv("output/submission.csv", index=False)
+submission.to_csv("./output/submission.csv", index=False)

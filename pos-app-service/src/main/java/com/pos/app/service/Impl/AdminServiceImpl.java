@@ -1252,7 +1252,7 @@ public class AdminServiceImpl implements AdminService {
 			List<ForcastingVo> revenue = new ArrayList<>();
 			
 			// Open the file
-			BufferedReader reader = new BufferedReader(new FileReader("train.csv"));
+			BufferedReader reader = new BufferedReader(new FileReader("D:/files/train.csv"));
 
 			// Create a CSVFormat object with the desired format
 			CSVFormat format = CSVFormat.DEFAULT.withHeader();
@@ -1271,7 +1271,7 @@ public class AdminServiceImpl implements AdminService {
 			
 			
 			// Open the file
-			BufferedReader submission = new BufferedReader(new FileReader("./output/submission.csv"));
+			BufferedReader submission = new BufferedReader(new FileReader("D:/files/output/submission.csv"));
 
 			List<ForcastingVo> prediction = new ArrayList<>();
 			
