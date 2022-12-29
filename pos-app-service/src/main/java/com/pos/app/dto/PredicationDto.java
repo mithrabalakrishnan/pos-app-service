@@ -1,45 +1,43 @@
 package com.pos.app.dto;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
-public class PredicationDto implements Serializable{
-	
-	
-	
+import com.pos.app.vo.ForcastingVo;
+
+public class PredicationDto implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
-	private Map<String, String> prediction;
-	
-	private Map<String, String> revenue;
 
-	public Map<String, String> getPrediction() {
-		return prediction;
-	}
+	private List<ForcastingVo> prediction;
 
-	public void setPrediction(Map<String, String> prediction) {
-		this.prediction = prediction;
-	}
+	private List<ForcastingVo> revenue;
 
-	public Map<String, String> getRevenue() {
-		return revenue;
-	}
-
-	public void setRevenue(Map<String, String> revenue) {
-		this.revenue = revenue;
-	}
-	
-	
 	public PredicationDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PredicationDto(Map<String, String> prediction, Map<String, String> revenue) {
+	public PredicationDto(List<ForcastingVo> prediction, List<ForcastingVo> revenue) {
 		super();
 		this.prediction = prediction;
 		this.revenue = revenue;
 	}
-	
+
+	public List<ForcastingVo> getPrediction() {
+		return prediction;
+	}
+
+	public void setPrediction(List<ForcastingVo> prediction) {
+		this.prediction = prediction;
+	}
+
+	public List<ForcastingVo> getRevenue() {
+		return revenue;
+	}
+
+	public void setRevenue(List<ForcastingVo> revenue) {
+		this.revenue = revenue;
+	}
 	
 	
 

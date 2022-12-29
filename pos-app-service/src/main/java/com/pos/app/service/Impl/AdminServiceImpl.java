@@ -47,6 +47,7 @@ import com.pos.app.repository.UserRepository;
 import com.pos.app.repository.UserVisitRepository;
 import com.pos.app.repository.VoucherRepository;
 import com.pos.app.service.AdminService;
+import com.pos.app.vo.ForcastingVo;
 import com.pos.app.vo.StatusResponse;
 
 @Service
@@ -1247,6 +1248,9 @@ public class AdminServiceImpl implements AdminService {
 		logger.info("inside generatedReport()------ AdminServiceImpl class");
 
 		try {
+			
+			List<ForcastingVo> revanue = new ArrayList<>();
+			
 			// Open the file
 			BufferedReader reader = new BufferedReader(new FileReader("./resources/train.csv"));
 
@@ -1257,8 +1261,9 @@ public class AdminServiceImpl implements AdminService {
 			Iterable<CSVRecord> records = format.parse(reader);
 			Map<String, String> data = new LinkedHashMap<>();
 			for (CSVRecord record : records) {
-				// Add the values of the record to the map
-				data.put(record.get("Id"), record.get("revenue"));
+				// Add the values of the record to the List
+				//data.put(record.get("Id"), record.get("revenue"));
+				revanue.add(new ForcastingVo(record.get("Id"), record.get("revenue")));
 			}
 
 			// Close the reader
@@ -1269,6 +1274,8 @@ public class AdminServiceImpl implements AdminService {
 			// Open the file
 			BufferedReader submission = new BufferedReader(new FileReader("./resources/output/submission.csv"));
 
+			List<ForcastingVo> prediction = new ArrayList<>();
+			
 			// Create a CSVFormat object with the desired format
 			CSVFormat formatCsv = CSVFormat.DEFAULT.withHeader();
 
@@ -1276,16 +1283,17 @@ public class AdminServiceImpl implements AdminService {
 			Iterable<CSVRecord> records1 = formatCsv.parse(submission);
 			Map<String, String> dataPredicated = new LinkedHashMap<>();
 			for (CSVRecord record : records1) {
-				// Add the values of the record to the map
-				dataPredicated.put(record.get("Id"), record.get("Prediction"));
+				// Add the values of the record to the list
+				//dataPredicated.put(record.get("Id"), record.get("Prediction"));
+				prediction.add(new ForcastingVo(record.get("Id"), record.get("Prediction")));
 			}
 
 			// Close the reader
 			submission.close();
 			
-			PredicationDto predication =new PredicationDto(dataPredicated, data);
+			PredicationDto forcasting = new PredicationDto(prediction, revanue);
 			
-			response.setData(predication);
+			response.setData(forcasting);
 			response.setMessage("Predicated data");
 			response.setStatus(true);
 			
