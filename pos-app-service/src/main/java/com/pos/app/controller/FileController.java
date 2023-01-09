@@ -58,13 +58,6 @@ public class FileController {
         return ResponseEntity.ok().body(status);
     }
 
-//    @PostMapping("/uploadMultipleFiles")
-//    public List<FileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-//        return Arrays.asList(files)
-//                .stream()
-//                .map(file -> uploadFile(file))
-//                .collect(Collectors.toList());
-//    }
 
     @GetMapping("/download-file/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {

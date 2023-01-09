@@ -86,27 +86,5 @@ public class DateUtil {
 	}
 	
 	
-/*	
 
-	public static void main(String[] args) {
-		// System.out.println(convertStringToDate("17-Mar-2022"));
-		
-		System.out.println(getDay("2022-11-18"));
-		System.out.println(getYear("2022-11-18"));
-		
-		System.out.println(getMonth("2022-01-18"));
-		System.out.println(getMonth("2022-02-18"));
-		System.out.println(getMonth("2022-03-18"));
-		System.out.println(getMonth("2022-04-18"));
-		System.out.println(getMonth("2022-05-18"));
-		System.out.println(getMonth("2022-06-18"));
-		System.out.println(getMonth("2022-07-18"));
-		System.out.println(getMonth("2022-08-18"));
-		System.out.println(getMonth("2022-09-18"));
-		System.out.println(getMonth("2022-10-18"));
-		System.out.println(getMonth("2022-11-18"));
-		System.out.println(getMonth("2022-12-18"));
-		// System.out.println(getCurrentDate());
-	}
-*/
 }
